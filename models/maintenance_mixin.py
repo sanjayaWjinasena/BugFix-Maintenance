@@ -2,6 +2,6 @@
 from odoo import fields, models
 
 
-class MaintenanceMixin(models.Model):
+class MaintenanceMixin(models.AbstractModel):
     _inherit = 'maintenance.mixin'
 
