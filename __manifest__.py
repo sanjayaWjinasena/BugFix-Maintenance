@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'BugFix - Maintenance',
-    'version': '17.0.0.0.1',
+    'version': '17.0.0.0.2',
     'summary': 'Studio-to-Python port for BugFix-Maintenance',
     'author': 'Jinasena Agricultural Machinery (Pvt) Ltd.',
     'category': 'Human Resources/Maintenance',

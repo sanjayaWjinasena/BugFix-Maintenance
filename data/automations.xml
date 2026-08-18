@@ -1,7 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <!-- TODO: 3 automations records need hand-porting. -->
-  <!-- Clear-DB id=96: MNT code gen -->
-  <!-- Clear-DB id=97: Validate Maintenance  Request -->
-  <!-- Clear-DB id=251: Update Cost Per Hour in Work Center -->
+  <!-- 3 automations ports for BugFix-Maintenance (auto-generated from Clear-DB snapshot) -->
+  <record id="automation_96_mnt_code_gen" model="base.automation">
+    <field name="name">MNT code gen</field>
+    <field name="model_id" search="[(&apos;model&apos;, &apos;=&apos;, &apos;Maintenance Request&apos;)]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="active" eval="True"/>
+    <!-- TODO: wire action_server_ids to actual server_action xmlids: [1566] -->
+  </record>
+  <record id="automation_97_validate_maintenance_request" model="base.automation">
+    <field name="name">Validate Maintenance  Request</field>
+    <field name="model_id" search="[(&apos;model&apos;, &apos;=&apos;, &apos;Maintenance Request&apos;)]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="active" eval="True"/>
+    <!-- TODO: wire action_server_ids to actual server_action xmlids: [1637] -->
+  </record>
+  <record id="automation_251_update_cost_per_hour_in_work_center" model="base.automation">
+    <field name="name">Update Cost Per Hour in Work Center</field>
+    <field name="model_id" search="[(&apos;model&apos;, &apos;=&apos;, &apos;Maintenance Equipment&apos;)]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="active" eval="True"/>
+    <!-- TODO: wire action_server_ids to actual server_action xmlids: [2545] -->
+  </record>
 </odoo>
