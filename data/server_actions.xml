@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <!-- TODO: 2 server_actions records need hand-porting. -->
+  <!-- Clear-DB id=1566: MNT code gen -->
+  <!-- Clear-DB id=2545: Update Cost Per Hour in Work Center -->
+</odoo>
