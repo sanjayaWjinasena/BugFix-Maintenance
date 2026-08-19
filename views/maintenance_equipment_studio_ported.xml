@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="ported_odoo_studio_equipmen_2db2f7f7_624b_4d35_b02d_0aa240badb1e" model="ir.ui.view">
+    <field name="name">Odoo Studio: equipment.form customization</field>
+    <field name="model">maintenance.equipment</field>
+    <field name="type">form</field>
+    <field name="priority">160</field>
+    <field name="mode">extension</field>
+    <field name="inherit_id" ref="maintenance.hr_equipment_view_form"/>
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//field[@name='cost']" position="after">
+          <field name="x_studio_electricity"/>
+          <field name="x_studio_water"/>
+          <field name="x_studio_lubricant"/>
+        </xpath>
+      </data>
+    </field>
+  </record>
+</odoo>

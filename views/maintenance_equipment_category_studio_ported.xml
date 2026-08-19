@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="ported_odoo_studio_equipmen_95477356_b912_46ad_a8a6_30e3376b13e8" model="ir.ui.view">
+    <field name="name">Odoo Studio: equipment.category.form customization</field>
+    <field name="model">maintenance.equipment.category</field>
+    <field name="type">form</field>
+    <field name="priority">99</field>
+    <field name="mode">extension</field>
+    <field name="inherit_id" ref="maintenance.hr_equipment_category_view_form"/>
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//field[@name='technician_user_id']" position="after">
+          <field name="x_studio_journal_type"/>
+        </xpath>
+      </data>
+    </field>
+  </record>
+</odoo>

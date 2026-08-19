@@ -12,6 +12,9 @@
     'data': [
         'data/server_actions.xml',
         'data/automations.xml',
+        'views/maintenance_equipment_category_studio_ported.xml',
+        'views/maintenance_request_studio_ported.xml',
+        'views/maintenance_equipment_studio_ported.xml',
     ],
     'installable': True,
     'auto_install': False,

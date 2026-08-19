@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="ported_odoo_studio_equipmen_d67f3394_a9ef_4052_87b7_48d8f04b6c20" model="ir.ui.view">
+    <field name="name">Odoo Studio: equipment.request.form customization</field>
+    <field name="model">maintenance.request</field>
+    <field name="type">form</field>
+    <field name="priority">99</field>
+    <field name="mode">extension</field>
+    <field name="inherit_id" ref="maintenance.hr_equipment_request_view_form"/>
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//field[@name='employee_id']" position="replace">
+          <field name="create_uid"/>
+        </xpath>
+        <xpath expr="//button[@name='archive_equipment_request']" position="attributes">
+          <attribute name="studio_approval">False</attribute>
+        </xpath>
+        <xpath expr="//form[1]/sheet[1]/div[not(@name)][1]" position="before">
+          <div name="button_box" class="oe_button_box">
+            
+          </div>
+        </xpath>
+        <xpath expr="//field[@name='name']" position="attributes">
+          <attribute name="force_save">True</attribute>
+          <attribute name="readonly">1</attribute></xpath>
+        <xpath expr="//field[@name='equipment_id']" position="attributes">
+          <attribute name="readonly">(stage_id == 4) or ((stage_id == 3) or ((stage_id == 2) or (stage_id == 5)))</attribute></xpath>
+        <xpath expr="//field[@name='category_id']" position="after">
+          <field name="x_studio_journal_type_1" string="Journal Type" invisible="equipment_id == False"/>
+        </xpath>
+        <xpath expr="//field[@name='maintenance_type']" position="attributes">
+          <attribute name="readonly">(stage_id == 4) or ((stage_id == 3) or ((stage_id == 2) or (stage_id == 5)))</attribute></xpath>
+        <xpath expr="//field[@name='production_id']" position="attributes">
+          <attribute name="force_save">True</attribute>
+          <attribute name="readonly">1</attribute></xpath>
+        <xpath expr="//field[@name='workorder_id']" position="attributes">
+          <attribute name="force_save">True</attribute>
+          <attribute name="invisible">1</attribute><attribute name="readonly">1</attribute></xpath>
+        <xpath expr="//field[@name='maintenance_team_id']" position="attributes">
+          <attribute name="invisible">stage_id in [1]</attribute><attribute name="readonly">(stage_id == 4) or ((stage_id == 3) or (stage_id == 2))</attribute></xpath>
+        <xpath expr="//field[@name='user_id']" position="attributes">
+          <attribute name="invisible">stage_id in [1]</attribute><attribute name="readonly">(stage_id == 4) or ((stage_id == 3) or (stage_id == 2))</attribute></xpath>
+        <xpath expr="//field[@name='user_id']" position="after">
+          <field name="x_studio_float_field_hmeW9"/>
+        </xpath>
+        <xpath expr="//field[@name='schedule_date']" position="attributes">
+          <attribute name="invisible">stage_id in [1]</attribute><attribute name="readonly">(stage_id == 4) or ((stage_id == 3) or (stage_id == 2))</attribute></xpath>
+        <xpath expr="//field[@name='duration']" position="attributes">
+          <attribute name="invisible">stage_id in [1]</attribute><attribute name="readonly">(stage_id == 4) or ((stage_id == 3) or (stage_id == 2))</attribute></xpath>
+        <xpath expr="//field[@name='priority']" position="attributes">
+          <attribute name="widget">radio</attribute>
+        <attribute name="readonly">(stage_id == 4) or ((stage_id == 3) or ((stage_id == 2) or (stage_id == 5)))</attribute><attribute name="required">1</attribute></xpath>
+        <xpath expr="//form[1]/sheet[1]/group[1]" position="after">
+          <group name="studio_group_xZrL9">
+            <group name="studio_group_xZrL9_left"/>
+            <group name="studio_group_xZrL9_right"/>
+          </group>
+        </xpath>
+        <xpath expr="//field[@name='description']" position="attributes">
+          <attribute name="string">Diagnosis Details</attribute>
+        <attribute name="invisible">1</attribute></xpath>
+        <xpath expr="//field[@name='description']" position="after">
+          <field name="x_studio_diagnosis_details" string="Diagnosis Details"/>
+        </xpath>
+      </data>
+    </field>
+  </record>
+  <record id="ported_equipment_request_fo_3cae4354_5076_4c1c_93e6_6ce2638fbca8" model="ir.ui.view">
+    <field name="name">equipment.request.form_Button</field>
+    <field name="model">maintenance.request</field>
+    <field name="type">form</field>
+    <field name="priority">99</field>
+    <field name="mode">extension</field>
+    <field name="inherit_id" ref="maintenance.hr_equipment_request_view_form"/>
+    <field name="arch" type="xml">
+      <data>
+          <xpath expr="//header/button[@name='archive_equipment_request']" position="after">
+            
+          </xpath>
+          <xpath expr="//header/button[@name='2320']" position="after">
+            
+          </xpath>
+          <xpath expr="//header/button[@name='2318']" position="after">
+            
+          </xpath>
+          <xpath expr="//header/button[@name='2326']" position="after">
+            
+          </xpath>
+          <xpath expr="//header/button[@name='2322']" position="after">
+            
+          </xpath>
+          <xpath expr="//field[@name='stage_id']" position="attributes">
+            <attribute name="options">{'clickable': False}</attribute>
+          </xpath>
+        </data>
+    </field>
+  </record>
+</odoo>
