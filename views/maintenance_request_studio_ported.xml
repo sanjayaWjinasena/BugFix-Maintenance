@@ -10,58 +10,28 @@
     <field name="inherit_id" ref="maintenance.hr_equipment_request_view_form"/>
     <field name="arch" type="xml">
       <data>
-      <field name="equipment_id" invisible="1"/>
-        <xpath expr="//field[@name='employee_id']" position="replace">
-          <field name="create_uid"/>
-        </xpath>
+        
         
         <xpath expr="//form[1]/sheet[1]/div[not(@name)][1]" position="before">
           <div name="button_box" class="oe_button_box">
             
           </div>
         </xpath>
-        <xpath expr="//field[@name='name']" position="attributes">
-          <attribute name="force_save">True</attribute>
-          <attribute name="readonly">1</attribute></xpath>
-        <xpath expr="//field[@name='equipment_id']" position="attributes">
-          <attribute name="readonly">(stage_id == 4) or ((stage_id == 3) or ((stage_id == 2) or (stage_id == 5)))</attribute></xpath>
-        <xpath expr="//field[@name='category_id']" position="after">
-          <field name="x_studio_journal_type_1" string="Journal Type" invisible="equipment_id == False"/>
-        </xpath>
-        <xpath expr="//field[@name='maintenance_type']" position="attributes">
-          <attribute name="readonly">(stage_id == 4) or ((stage_id == 3) or ((stage_id == 2) or (stage_id == 5)))</attribute></xpath>
-        <xpath expr="//field[@name='production_id']" position="attributes">
-          <attribute name="force_save">True</attribute>
-          <attribute name="readonly">1</attribute></xpath>
-        <xpath expr="//field[@name='workorder_id']" position="attributes">
-          <attribute name="force_save">True</attribute>
-          <attribute name="invisible">1</attribute><attribute name="readonly">1</attribute></xpath>
-        <xpath expr="//field[@name='maintenance_team_id']" position="attributes">
-          <attribute name="invisible">stage_id in [1]</attribute><attribute name="readonly">(stage_id == 4) or ((stage_id == 3) or (stage_id == 2))</attribute></xpath>
-        <xpath expr="//field[@name='user_id']" position="attributes">
-          <attribute name="invisible">stage_id in [1]</attribute><attribute name="readonly">(stage_id == 4) or ((stage_id == 3) or (stage_id == 2))</attribute></xpath>
-        <xpath expr="//field[@name='user_id']" position="after">
-          <field name="x_studio_float_field_hmeW9"/>
-        </xpath>
-        <xpath expr="//field[@name='schedule_date']" position="attributes">
-          <attribute name="invisible">stage_id in [1]</attribute><attribute name="readonly">(stage_id == 4) or ((stage_id == 3) or (stage_id == 2))</attribute></xpath>
-        <xpath expr="//field[@name='duration']" position="attributes">
-          <attribute name="invisible">stage_id in [1]</attribute><attribute name="readonly">(stage_id == 4) or ((stage_id == 3) or (stage_id == 2))</attribute></xpath>
-        <xpath expr="//field[@name='priority']" position="attributes">
-          <attribute name="widget">radio</attribute>
-        <attribute name="readonly">(stage_id == 4) or ((stage_id == 3) or ((stage_id == 2) or (stage_id == 5)))</attribute><attribute name="required">1</attribute></xpath>
-        <xpath expr="//form[1]/sheet[1]/group[1]" position="after">
-          <group name="studio_group_xZrL9">
-            <group name="studio_group_xZrL9_left"/>
-            <group name="studio_group_xZrL9_right"/>
-          </group>
-        </xpath>
-        <xpath expr="//field[@name='description']" position="attributes">
-          <attribute name="string">Diagnosis Details</attribute>
-        <attribute name="invisible">1</attribute></xpath>
-        <xpath expr="//field[@name='description']" position="after">
-          <field name="x_studio_diagnosis_details" string="Diagnosis Details"/>
-        </xpath>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
       </data>
     </field>
   </record>
@@ -80,9 +50,7 @@
           
           
           
-          <xpath expr="//field[@name='stage_id']" position="attributes">
-            <attribute name="options">{'clickable': False}</attribute>
-          </xpath>
+          
         </data>
     </field>
   </record>

@@ -10,11 +10,7 @@
     <field name="inherit_id" ref="maintenance.hr_equipment_view_form"/>
     <field name="arch" type="xml">
       <data>
-        <xpath expr="//field[@name='cost']" position="after">
-          <field name="x_studio_electricity"/>
-          <field name="x_studio_water"/>
-          <field name="x_studio_lubricant"/>
-        </xpath>
+        
       </data>
     </field>
   </record>

@@ -10,9 +10,7 @@
     <field name="inherit_id" ref="maintenance.hr_equipment_category_view_form"/>
     <field name="arch" type="xml">
       <data>
-        <xpath expr="//field[@name='technician_user_id']" position="after">
-          <field name="x_studio_journal_type"/>
-        </xpath>
+        
       </data>
     </field>
   </record>
