@@ -35,23 +35,4 @@
       </data>
     </field>
   </record>
-  <record id="ported_equipment_request_fo_3cae4354_5076_4c1c_93e6_6ce2638fbca8" model="ir.ui.view">
-    <field name="name">equipment.request.form_Button</field>
-    <field name="model">maintenance.request</field>
-    <field name="key">studio_customization.equipment_request_fo_3cae4354-5076-4c1c-93e6-6ce2638fbca8</field>
-    <field name="type">form</field>
-    <field name="priority">99</field>
-    <field name="mode">extension</field>
-    <field name="inherit_id" ref="maintenance.hr_equipment_request_view_form"/>
-    <field name="arch" type="xml">
-      <data>
-          
-          
-          
-          
-          
-          
-        </data>
-    </field>
-  </record>
 </odoo>
