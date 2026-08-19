@@ -3,18 +3,18 @@
   <record id="ported_odoo_studio_equipmen_d67f3394_a9ef_4052_87b7_48d8f04b6c20" model="ir.ui.view">
     <field name="name">Odoo Studio: equipment.request.form customization</field>
     <field name="model">maintenance.request</field>
+    <field name="key">studio_customization.odoo_studio_equipmen_d67f3394-a9ef-4052-87b7-48d8f04b6c20</field>
     <field name="type">form</field>
     <field name="priority">99</field>
     <field name="mode">extension</field>
     <field name="inherit_id" ref="maintenance.hr_equipment_request_view_form"/>
     <field name="arch" type="xml">
       <data>
+      <field name="equipment_id" invisible="1"/>
         <xpath expr="//field[@name='employee_id']" position="replace">
           <field name="create_uid"/>
         </xpath>
-        <xpath expr="//button[@name='archive_equipment_request']" position="attributes">
-          <attribute name="studio_approval">False</attribute>
-        </xpath>
+        
         <xpath expr="//form[1]/sheet[1]/div[not(@name)][1]" position="before">
           <div name="button_box" class="oe_button_box">
             
@@ -68,15 +68,14 @@
   <record id="ported_equipment_request_fo_3cae4354_5076_4c1c_93e6_6ce2638fbca8" model="ir.ui.view">
     <field name="name">equipment.request.form_Button</field>
     <field name="model">maintenance.request</field>
+    <field name="key">studio_customization.equipment_request_fo_3cae4354-5076-4c1c-93e6-6ce2638fbca8</field>
     <field name="type">form</field>
     <field name="priority">99</field>
     <field name="mode">extension</field>
     <field name="inherit_id" ref="maintenance.hr_equipment_request_view_form"/>
     <field name="arch" type="xml">
       <data>
-          <xpath expr="//header/button[@name='archive_equipment_request']" position="after">
-            
-          </xpath>
+          
           
           
           

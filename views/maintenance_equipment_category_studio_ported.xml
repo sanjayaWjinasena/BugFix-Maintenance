@@ -3,6 +3,7 @@
   <record id="ported_odoo_studio_equipmen_95477356_b912_46ad_a8a6_30e3376b13e8" model="ir.ui.view">
     <field name="name">Odoo Studio: equipment.category.form customization</field>
     <field name="model">maintenance.equipment.category</field>
+    <field name="key">studio_customization.odoo_studio_equipmen_95477356-b912-46ad-a8a6-30e3376b13e8</field>
     <field name="type">form</field>
     <field name="priority">99</field>
     <field name="mode">extension</field>
