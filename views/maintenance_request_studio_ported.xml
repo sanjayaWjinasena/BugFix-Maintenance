@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+  <record id="ported_default_activity_vie_a2229fc7_c68c_4499_8d6d_40f805c9f25d" model="ir.ui.view">
+    <field name="name">Default activity view for ir.model(689,)</field>
+    <field name="model">maintenance.request</field>
+    <field name="key">studio_customization.default_activity_vie_a2229fc7-c68c-4499-8d6d-40f805c9f25d</field>
+    <field name="type">activity</field>
+    <field name="priority">16</field>
+    <field name="mode">primary</field>
+    <field name="arch" type="xml">
+      <activity string="Maintenance Request"><templates><div t-name="activity-box"><field name="name" modifiers="{&quot;required&quot;: true}"/></div></templates></activity>
+    </field>
+  </record>
   <record id="ported_odoo_studio_equipmen_d67f3394_a9ef_4052_87b7_48d8f04b6c20" model="ir.ui.view">
     <field name="name">Odoo Studio: equipment.request.form customization</field>
     <field name="model">maintenance.request</field>
