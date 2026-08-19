@@ -15,5 +15,5 @@
     <field name="active" eval="True"/>
     <!-- TODO: wire action_server_ids to actual server_action xmlids: [1637] -->
   </record>
-  <!-- SKIPPED unresolved model ref: <record id="automation_251_update_cost_per_hour_in_work_center" model="base.automation">     <field name="name">Update Cost Per Hour in Work Center</f... -->
+  
 </odoo>
