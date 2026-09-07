@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- BugFix-Maintenance v17.0.0.0.6: 1 window action look-alike
+     with distinct domain. 12 verified TRUE duplicates skipped. -->
+<odoo>
+
+  <record id="act_window_668_maintenance_requests" model="ir.actions.act_window">
+    <field name="name">Maintenance Requests</field>
+    <field name="res_model">maintenance.request</field>
+    <field name="view_mode">kanban,tree,form,pivot,graph,calendar,activity</field>
+    <field name="domain">[('maintenance_team_id', '=', active_id), ('maintenance_type', 'in', context.get('maintenance_type', ['preventive', 'corrective']))]</field>
+    <field name="context">{
+            'default_maintenance_team_id': active_id,
+        }</field>
+    <field name="help" type="html"><p class="o_view_nocontent_smiling_face">
+                Add a new maintenance request
+            </p><p>
+                Follow the process of the request and communicate with the collaborator.
+            </p>
+        </field>
+  </record>
+
+</odoo>

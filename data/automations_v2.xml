@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- BugFix-Maintenance v17.0.0.0.6: 1 base.automation
+     wiring the shipped server action. -->
+<odoo>
+
+  <record id="base_automation_251_update_cost_per_hour_in_work_center" model="base.automation">
+    <field name="name">Update Cost Per Hour in Work Center</field>
+    <field name="active" eval="True"/>
+    <field name="model_id" search="[('model', '=', 'maintenance.equipment')]"/>
+    <field name="trigger">on_create_or_write</field>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Maintenance.server_action_2545_update_cost_per_hour_in_work_center')])]"/>
+  </record>
+
+</odoo>
