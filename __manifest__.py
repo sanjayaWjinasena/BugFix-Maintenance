@@ -1,13 +1,29 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Jinasena : Module : Maintenance',
-    'version': '17.0.0.0.7',
+    'version': '17.0.0.0.8',
     'summary': 'Studio-to-Python port for BugFix-Maintenance',
     'author': 'Jinasena Agricultural Machinery (Pvt) Ltd.',
     'category': 'Human Resources/Maintenance',
     'license': 'LGPL-3',
     # Do NOT depend on studio_customization -- Odoo SH does not ship
     # a manifest for it, listing it causes install skip.
+    # v17.0.0.0.8: hotfix v17.0.0.0.7 - add mrp_maintenance dep.
+    # v17.0.0.0.7 crashed on view 3254 with:
+    #   Element '<xpath expr="//field[@name='production_id']">' cannot
+    #   be located in parent view
+    # Root cause: production_id is added to maintenance.request by
+    # mrp_maintenance module (its view #5490 inherits our parent
+    # view #627 with priority 16). At view application time both
+    # views should sort by priority - our v99 loads after
+    # mrp_maintenance v16 - so composed arch SHOULD have production_id.
+    # BUT: mrp_maintenance and BugFix-Maintenance are PEER modules
+    # (no dep either way). Module load order among peers is arbitrary,
+    # usually alphabetical. BugFix-Maintenance sorts before
+    # mrp_maintenance ('B' < 'm'), so at our load time mrp_maintenance's
+    # view 5490 doesn't exist yet - can't apply, production_id not
+    # in composed arch.
+    # Fix: add 'mrp_maintenance' to depends so it loads before us.
     # v17.0.0.0.7: hotfix v17.0.0.0.6 - add base_automation dep.
     # v17.0.0.0.6 crashed with:
     #   ValueError: Wrong value for ir.actions.server.usage: 'base_automation'
@@ -33,7 +49,7 @@
     #   Fields:          0 gap
     # Also renamed to 'Jinasena : Module : Maintenance' + added shared
     # icon at static/description/icon.png.
-    'depends': ['base_setup', 'maintenance', 'base_automation'],
+    'depends': ['base_setup', 'maintenance', 'base_automation', 'mrp_maintenance'],
     'data': [
         'data/server_actions.xml',
         'data/server_actions_v2.xml',
