@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Jinasena : Module : Maintenance',
-    'version': '17.0.0.0.9',
+    'version': '17.0.0.0.10',
     'summary': 'Studio-to-Python port for BugFix-Maintenance',
     'author': 'Jinasena Agricultural Machinery (Pvt) Ltd.',
     'category': 'Human Resources/Maintenance',
@@ -62,6 +62,7 @@
         'views/maintenance_stage_studio_ported.xml',
         'views/studio_ported_5_views.xml',
         'data/server_actions_gap.xml',
+        'data/ir_defaults_gap.xml',
     ],
     'installable': True,
     'auto_install': False,

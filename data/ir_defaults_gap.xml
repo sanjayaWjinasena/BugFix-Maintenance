@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- BugFix-Maintenance: 1 ir.default records routed from Phase D2 sweep -->
+<odoo>
+  <data noupdate="1">
+
+    <record id="default_387_maintenance_request_x_studio_integer_field_1Zbhs" model="ir.default">
+      <field name="field_id" ref="BugFix-Maintenance.field_maintenance_request__x_studio_integer_field_1Zbhs"/>
+      <field name="json_value">"0"</field>
+    </record>
+
+  </data>
+</odoo>
