@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- BugFix-Maintenance: 2 gap server actions -->
+<odoo>
+
+
+  <record id="server_action_1566_mnt_code_gen" model="ir.actions.server">
+    <field name="name">MNT code gen</field>
+    <field name="model_id" ref="maintenance.model_maintenance_request"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="code"><![CDATA[
+record['name'] =env['ir.sequence'].next_by_code('mnt.req.seq')
+
+
+    ]]></field>
+  </record>
+
+  <record id="server_action_2545_update_cost_per_hour_in_work_center" model="ir.actions.server">
+    <field name="name">Update Cost Per Hour in Work Center</field>
+    <field name="model_id" ref="maintenance.model_maintenance_equipment"/>
+    <field name="state">code</field>
+    <field name="usage">base_automation</field>
+    <field name="code"><![CDATA[
+work_center = env['mrp.workcenter'].search([('equipment_ids', '=', record.id)])
+if work_center:
+  for work_centers in work_center:
+    if work_centers.x_studio_ot_cost_per_hour > 0.00:
+      #work_centers.write({'costs_hour':(work_centers.x_studio_overhead_cost_hour + work_centers.x_studio_general_cost_hour + work_centers.x_studio_ot_cost_per_hour)})
+      work_centers.write({'costs_hour':(work_centers.x_studio_ot_cost_per_hour)}) 
+    else:
+      #Ework_centers.write({'costs_hour':(work_centers.x_studio_labour_cost_hour + work_centers.x_studio_overhead_cost_hour + work_centers.x_studio_general_cost_hour)}) 
+      work_centers.write({'costs_hour':(work_centers.x_studio_labour_cost_hour)}) 
+      
+     
+    ]]></field>
+  </record>
+
+</odoo>
