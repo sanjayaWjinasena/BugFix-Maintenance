@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Jinasena : Module : Maintenance',
-    'version': '17.0.0.0.13',
+    'version': '17.0.0.0.14',
     'summary': 'Studio-to-Python port for BugFix-Maintenance',
     'author': 'Jinasena Agricultural Machinery (Pvt) Ltd.',
     'category': 'Human Resources/Maintenance',
