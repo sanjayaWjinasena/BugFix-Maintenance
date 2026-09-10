@@ -44,16 +44,16 @@
     <xpath expr="//header/button[@name='archive_equipment_request']" position="after">
       <!-- STRIPPED action button aid=2320 unresolvable -->
     </xpath>
-    <xpath expr="//header/button[@name='2320']" position="after">
+    <xpath expr="//header/button[@name='2320']<!-- WARNING: xpath refs unresolvable action -->" position="after">
       <!-- STRIPPED action button aid=2318 unresolvable -->
     </xpath>
-    <xpath expr="//header/button[@name='2318']" position="after">
+    <xpath expr="//header/button[@name='2318']<!-- WARNING: xpath refs unresolvable action -->" position="after">
       <!-- STRIPPED action button aid=2326 unresolvable -->
     </xpath>
-    <xpath expr="//header/button[@name='2326']" position="after">
+    <xpath expr="//header/button[@name='2326']<!-- WARNING: xpath refs unresolvable action -->" position="after">
       <!-- STRIPPED action button aid=2322 unresolvable -->
     </xpath>
-    <xpath expr="//header/button[@name='2322']" position="after">
+    <xpath expr="//header/button[@name='2322']<!-- WARNING: xpath refs unresolvable action -->" position="after">
       <!-- STRIPPED action button aid=2324 unresolvable -->
     </xpath>
     <xpath expr="//field[@name='stage_id']" position="attributes">
