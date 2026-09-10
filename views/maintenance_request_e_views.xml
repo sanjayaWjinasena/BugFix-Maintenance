@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- BugFix-Maintenance: Phase E - 3 views for maintenance.request -->
+<odoo>
+  <data>
+    <record id="view_5318_odoo_studio_equipment_request_tree_customization_e" model="ir.ui.view">
+      <field name="name">Odoo Studio: equipment.request.tree customization</field>
+      <field name="model">maintenance.request</field>
+      <field name="type">tree</field>
+      <field name="priority">160</field>
+      <field name="inherit_id" ref="maintenance.hr_equipment_request_view_tree"/>
+      <field name="mode">extension</field>
+      <field name="arch" type="xml">
+        <data>
+  <xpath expr="//tree[1]/field[@name='name']" position="after">
+    <field name="description" optional="show"/>
+    <field name="create_date" optional="show"/>
+  </xpath>
+  <xpath expr="//field[@name='request_date']" position="after">
+    <field name="schedule_date" optional="show"/>
+    <field name="close_date" optional="show"/>
+  </xpath>
+</data>
+      </field>
+    </record>
+
+    <record id="view_3771_default_activity_view_for_ir_model_689_e" model="ir.ui.view">
+      <field name="name">Default activity view for ir.model(689,)</field>
+      <field name="model">maintenance.request</field>
+      <field name="type">activity</field>
+      <field name="arch" type="xml">
+        <activity string="Maintenance Request"><templates><div t-name="activity-box"><field name="name" required="1"/></div></templates></activity>
+      </field>
+    </record>
+
+    <record id="view_5072_equipment_request_form_button_e" model="ir.ui.view">
+      <field name="name">equipment.request.form_Button</field>
+      <field name="model">maintenance.request</field>
+      <field name="type">form</field>
+      <field name="priority">99</field>
+      <field name="inherit_id" ref="maintenance.hr_equipment_request_view_form"/>
+      <field name="mode">extension</field>
+      <field name="arch" type="xml">
+        <data>
+    <xpath expr="//header/button[@name='archive_equipment_request']" position="after">
+      <button type="action" name="2320" string="Plan" class="btn-primary" invisible="stage_id not in [1]"/>
+    </xpath>
+    <xpath expr="//header/button[@name='2320']" position="after">
+      <button type="action" name="2318" string="Start Repair" class="btn-primary" invisible="stage_id not in [5]"/>
+    </xpath>
+    <xpath expr="//header/button[@name='2318']" position="after">
+      <button type="action" name="2326" string="Create MR" class="btn-primary" invisible="stage_id in [1, 3, 4]"/>
+    </xpath>
+    <xpath expr="//header/button[@name='2326']" position="after">
+      <button type="action" name="2322" string="Complete Repair" class="btn-primary" invisible="stage_id not in [2]"/>
+    </xpath>
+    <xpath expr="//header/button[@name='2322']" position="after">
+      <button type="action" name="2324" string="Scrap" class="btn-primary" invisible="stage_id not in [2]"/>
+    </xpath>
+    <xpath expr="//field[@name='stage_id']" position="attributes">
+      <attribute name="options">{'clickable': False}</attribute>
+    </xpath>
+  </data>
+      </field>
+    </record>
+
+  </data>
+</odoo>
