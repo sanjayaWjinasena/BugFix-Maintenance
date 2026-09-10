@@ -42,19 +42,19 @@
       <field name="arch" type="xml">
         <data>
     <xpath expr="//header/button[@name='archive_equipment_request']" position="after">
-      <button type="action" name="2320" string="Plan" class="btn-primary" invisible="stage_id not in [1]"/>
+      <!-- STRIPPED action button aid=2320 unresolvable -->
     </xpath>
     <xpath expr="//header/button[@name='2320']" position="after">
-      <button type="action" name="2318" string="Start Repair" class="btn-primary" invisible="stage_id not in [5]"/>
+      <!-- STRIPPED action button aid=2318 unresolvable -->
     </xpath>
     <xpath expr="//header/button[@name='2318']" position="after">
-      <button type="action" name="2326" string="Create MR" class="btn-primary" invisible="stage_id in [1, 3, 4]"/>
+      <!-- STRIPPED action button aid=2326 unresolvable -->
     </xpath>
     <xpath expr="//header/button[@name='2326']" position="after">
-      <button type="action" name="2322" string="Complete Repair" class="btn-primary" invisible="stage_id not in [2]"/>
+      <!-- STRIPPED action button aid=2322 unresolvable -->
     </xpath>
     <xpath expr="//header/button[@name='2322']" position="after">
-      <button type="action" name="2324" string="Scrap" class="btn-primary" invisible="stage_id not in [2]"/>
+      <!-- STRIPPED action button aid=2324 unresolvable -->
     </xpath>
     <xpath expr="//field[@name='stage_id']" position="attributes">
       <attribute name="options">{'clickable': False}</attribute>
