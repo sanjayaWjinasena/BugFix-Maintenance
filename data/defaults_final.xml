@@ -1,8 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- BugFix-Maintenance: Defaults final - 1 defaults -->
+<!-- BugFix-Maintenance: Defaults final - 0 non-Selection -->
 <odoo noupdate="1">
-  <record id="default_final_maintenance_field_maintenance_request_name_new" model="ir.default">
-    <field name="field_id" ref="maintenance.field_maintenance_request__name"/>
-    <field name="json_value">"New"</field>
-  </record>
 </odoo>
