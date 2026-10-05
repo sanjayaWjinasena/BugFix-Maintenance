@@ -68,6 +68,8 @@
         'views/maintenance_equipment_e_views.xml',
         'views/maintenance_request_e_views.xml',
     ],
+    # Staging_Migration: repo-own existing Studio models before data loads.
+    'pre_init_hook': 'pre_init_hook',
     'installable': True,
     'auto_install': False,
     'application': True,
