@@ -1,0 +1,250 @@
+{
+"act_window_668_maintenance_requests": {
+"ir.actions.act_window": [
+[
+668,
+"2021-02-05 07:33:01"
+]
+]
+},
+"automation_96_mnt_code_gen": {
+"base.automation": [
+[
+96,
+"2022-02-15 10:22:46"
+]
+]
+},
+"automation_97_validate_maintenance_request": {
+"base.automation": [
+[
+97,
+"2022-03-02 10:07:14"
+]
+]
+},
+"base_automation_251_update_cost_per_hour_in_work_center": {
+"base.automation": [
+[
+251,
+"2024-05-06 10:42:50"
+]
+]
+},
+"default_387_maintenance_request_x_studio_integer_field_1Zbhs": {
+"ir.default": [
+[
+387,
+"2023-11-23 08:16:25"
+]
+]
+},
+"ported_default_activity_vie_a2229fc7_c68c_4499_8d6d_40f805c9f25d": {
+"ir.ui.view": [
+[
+3771,
+"2022-03-08 14:16:40"
+]
+]
+},
+"ported_odoo_studio_equipmen_d67f3394_a9ef_4052_87b7_48d8f04b6c20": {
+"ir.ui.view": [
+[
+3254,
+"2022-02-15 10:21:08"
+]
+]
+},
+"ported_view_3254_odoo_studio_equipment_request_form_custo": {
+"ir.ui.view": [
+[
+3254,
+"2022-02-15 10:21:08"
+]
+]
+},
+"ported_view_5071_odoo_studio_equipment_stage_tree_customi": {
+"ir.ui.view": [
+[
+5071,
+"2023-08-10 03:31:04"
+]
+]
+},
+"ported_view_5072_equipment_request_form_button": {
+"ir.ui.view": [
+[
+5072,
+"2023-08-10 03:44:56"
+]
+]
+},
+"ported_view_5332_odoo_studio_equipment_category_tree_cust": {
+"ir.ui.view": [
+[
+5332,
+"2023-11-30 04:41:19"
+]
+]
+},
+"ported_view_5333_odoo_studio_equipment_category_form_cust": {
+"ir.ui.view": [
+[
+5333,
+"2023-11-30 04:45:42"
+]
+]
+},
+"sa_f5_maintenance_equipment_update_cost_per_hour_in_work_center": {
+"ir.actions.server": [
+[
+2545,
+"2024-05-06 10:42:50"
+]
+]
+},
+"server_action_1566_mnt_code_gen": {
+"ir.actions.server": [
+[
+1566,
+"2022-02-15 10:22:46"
+]
+]
+},
+"server_action_1637_validate_maintenance_request": {
+"ir.actions.server": [
+[
+1637,
+"2022-03-02 10:07:14"
+]
+]
+},
+"server_action_1638_mnt_req_planing": {
+"ir.actions.server": [
+[
+1638,
+"2022-03-08 14:28:44"
+]
+]
+},
+"server_action_1640_mnt_req_inprogress": {
+"ir.actions.server": [
+[
+1640,
+"2022-03-08 15:23:50"
+]
+]
+},
+"server_action_1642_mnt_req_repaired": {
+"ir.actions.server": [
+[
+1642,
+"2022-03-08 15:25:32"
+]
+]
+},
+"server_action_1644_mnt_req_scraped": {
+"ir.actions.server": [
+[
+1644,
+"2022-03-08 15:26:17"
+]
+]
+},
+"server_action_1646_mr_create_for_mnt": {
+"ir.actions.server": [
+[
+1646,
+"2022-03-09 06:43:27"
+]
+]
+},
+"server_action_1649_mr_create_for_mnt": {
+"ir.actions.server": [
+[
+1649,
+"2022-03-09 09:06:01"
+]
+]
+},
+"server_action_2318_mr_maintenance_in_progress": {
+"ir.actions.server": [
+[
+2318,
+"2023-08-10 03:27:00"
+]
+]
+},
+"server_action_2320_mr_maintenance_planning": {
+"ir.actions.server": [
+[
+2320,
+"2023-08-10 03:35:50"
+]
+]
+},
+"server_action_2322_mr_maintenance_repaired": {
+"ir.actions.server": [
+[
+2322,
+"2023-08-10 03:36:29"
+]
+]
+},
+"server_action_2324_mr_maintenance_scrap": {
+"ir.actions.server": [
+[
+2324,
+"2023-08-10 03:36:54"
+]
+]
+},
+"server_action_2326_mr_create_mr_from_maintenance_request": {
+"ir.actions.server": [
+[
+2326,
+"2023-08-10 04:22:13"
+]
+]
+},
+"server_action_2545_update_cost_per_hour_in_work_center": {
+"ir.actions.server": [
+[
+2545,
+"2024-05-06 10:42:50"
+]
+]
+},
+"view_3771_default_activity_view_for_ir_model_689_e": {
+"ir.ui.view": [
+[
+3771,
+"2022-03-08 14:16:40"
+]
+]
+},
+"view_5072_equipment_request_form_button_e": {
+"ir.ui.view": [
+[
+5072,
+"2023-08-10 03:44:56"
+]
+]
+},
+"view_5318_odoo_studio_equipment_request_tree_customization_e": {
+"ir.ui.view": [
+[
+5318,
+"2023-11-21 03:34:22"
+]
+]
+},
+"view_5495_odoo_studio_equipment_form_customization_e": {
+"ir.ui.view": [
+[
+5495,
+"2024-05-06 10:40:18"
+]
+]
+}
+}
