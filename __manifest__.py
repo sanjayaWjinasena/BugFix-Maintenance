@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 {
+    # upgrade-testing branch: data files below are commented out - this branch installs functions only, no data is seeded.
     'name': 'Jinasena : Module : Maintenance',
     'version': '17.0.0.0.18',
     'summary': 'Studio-to-Python port for BugFix-Maintenance',
@@ -64,7 +65,7 @@
         'views/maintenance_stage_studio_ported.xml',
         'views/studio_ported_5_views.xml',
         'data/server_actions_gap.xml',
-        'data/ir_defaults_gap.xml',
+        # 'data/ir_defaults_gap.xml',  # upgrade-testing: data, not shipped
         'views/maintenance_equipment_e_views.xml',
         'views/maintenance_request_e_views.xml',
     ],
