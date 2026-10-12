@@ -65,7 +65,7 @@
         'views/maintenance_stage_studio_ported.xml',
         'views/studio_ported_5_views.xml',
         'data/server_actions_gap.xml',
-        # 'data/ir_defaults_gap.xml',  # upgrade-testing: data, not shipped
+        'data/ir_defaults_gap.xml',  # upgrade-testing: form defaults shipped; record-specific ones commented inside
         'views/maintenance_equipment_e_views.xml',
         'views/maintenance_request_e_views.xml',
     ],
