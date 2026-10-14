@@ -91,16 +91,15 @@ This repo adds three manually entered figures to equipment, Electricity, Water a
   <details><summary>code (10 lines)</summary>
 
 ```python
-
-work_center = env['mrp.workcenter'].search([('equipment_ids', '=', record.id)])
+work_center = env["mrp.workcenter"].search([("equipment_ids", "=", record.id)])
 if work_center:
-  for work_centers in work_center:
-    if work_centers.x_studio_ot_cost_per_hour > 0.00:
-      #work_centers.write({'costs_hour':(work_centers.x_studio_overhead_cost_hour + work_centers.x_studio_general_cost_hour + work_centers.x_studio_ot_cost_per_hour)})
-      work_centers.write({'costs_hour':(work_centers.x_studio_ot_cost_per_hour)}) 
-    else:
-      #Ework_centers.write({'costs_hour':(work_centers.x_studio_labour_cost_hour + work_centers.x_studio_overhead_cost_hour + work_centers.x_studio_general_cost_hour)}) 
-      work_centers.write({'costs_hour':(work_centers.x_studio_labour_cost_hour)})
+    for work_centers in work_center:
+        if work_centers.x_studio_ot_cost_per_hour > 0.00:
+            # work_centers.write({'costs_hour':(work_centers.x_studio_overhead_cost_hour + work_centers.x_studio_general_cost_hour + work_centers.x_studio_ot_cost_per_hour)})
+            work_centers.write({"costs_hour": (work_centers.x_studio_ot_cost_per_hour)})
+        else:
+            # Ework_centers.write({'costs_hour':(work_centers.x_studio_labour_cost_hour + work_centers.x_studio_overhead_cost_hour + work_centers.x_studio_general_cost_hour)})
+            work_centers.write({"costs_hour": (work_centers.x_studio_labour_cost_hour)})
 ```
   </details>
 - **Update Cost Per Hour in Work Center** (`sa_f5_maintenance_equipment_update_cost_per_hour_in_work_center`, type `code`)
@@ -110,15 +109,15 @@ if work_center:
   <details><summary>code (9 lines)</summary>
 
 ```python
-work_center = env['mrp.workcenter'].search([('equipment_ids', '=', record.id)])
+work_center = env["mrp.workcenter"].search([("equipment_ids", "=", record.id)])
 if work_center:
-  for work_centers in work_center:
-    if work_centers.x_studio_ot_cost_per_hour > 0.00:
-      #work_centers.write({'costs_hour':(work_centers.x_studio_overhead_cost_hour + work_centers.x_studio_general_cost_hour + work_centers.x_studio_ot_cost_per_hour)})
-      work_centers.write({'costs_hour':(work_centers.x_studio_ot_cost_per_hour)}) 
-    else:
-      #Ework_centers.write({'costs_hour':(work_centers.x_studio_labour_cost_hour + work_centers.x_studio_overhead_cost_hour + work_centers.x_studio_general_cost_hour)}) 
-      work_centers.write({'costs_hour':(work_centers.x_studio_labour_cost_hour)})
+    for work_centers in work_center:
+        if work_centers.x_studio_ot_cost_per_hour > 0.00:
+            # work_centers.write({'costs_hour':(work_centers.x_studio_overhead_cost_hour + work_centers.x_studio_general_cost_hour + work_centers.x_studio_ot_cost_per_hour)})
+            work_centers.write({"costs_hour": (work_centers.x_studio_ot_cost_per_hour)})
+        else:
+            # Ework_centers.write({'costs_hour':(work_centers.x_studio_labour_cost_hour + work_centers.x_studio_overhead_cost_hour + work_centers.x_studio_general_cost_hour)})
+            work_centers.write({"costs_hour": (work_centers.x_studio_labour_cost_hour)})
 ```
   </details>
 **Automations (1):**
@@ -198,8 +197,7 @@ This repo adds Diagnosis Details, a read-only Journal Type, and some unlabelled 
   <details><summary>code (2 lines)</summary>
 
 ```python
-
-record['name'] =env['ir.sequence'].next_by_code('mnt.req.seq')
+record["name"] = env["ir.sequence"].next_by_code("mnt.req.seq")
 ```
   </details>
 - **MNT_REQ_inprogress** (`server_action_1640_mnt_req_inprogress`, type `object_write`)
@@ -293,33 +291,24 @@ record['name'] =env['ir.sequence'].next_by_code('mnt.req.seq')
   <details><summary>code (27 lines)</summary>
 
 ```python
-if record.id: 
+if record.id:
+    mr = env["x_material_request"].create(
+        {
+            "x_studio_many2one_field_THFu6": record.id,
+            "x_studio_journal_type": record.x_studio_journal_type_1.id,
+        }
+    )
 
-  
-
-  mr = env['x_material_request'].create({'x_studio_many2one_field_THFu6':record.id, 'x_studio_journal_type':record.x_studio_journal_type_1.id})  
-
-  
-
-  action = {
-
-            'name': 'RFQ',
-
-            'domain': [('id', '=', mr.id)],
-
-            'type': 'ir.actions.act_window',
-
-            'res_model': 'x_material_request',
-
-            'view_mode': 'tree,form',
-
-            'view_type': 'form',
-
-            'view_id': False,
-
-            'context': False,
-
-            }
+    action = {
+        "name": "RFQ",
+        "domain": [("id", "=", mr.id)],
+        "type": "ir.actions.act_window",
+        "res_model": "x_material_request",
+        "view_mode": "tree,form",
+        "view_type": "form",
+        "view_id": False,
+        "context": False,
+    }
 ```
   </details>
 - **MR - Maintenance In progress** (`server_action_2318_mr_maintenance_in_progress`, type `code`)
@@ -330,20 +319,19 @@ if record.id:
 
 ```python
 if record.id:
-  if record.duration == False:
-    raise UserError('Duration must be specified.')
-    
-  if record.user_id.id == False:
-    raise UserError('Responsible user must be specified.')
-    
-  if record.schedule_date == False:
-    raise UserError('Schedule date must be specified.')
-    
-  if record.x_studio_diagnosis_details == False:
-    raise UserError('Diagnosis details must be specified.')  
-    
-    
-  record.write({'stage_id':2})
+    if record.duration == False:
+        raise UserError("Duration must be specified.")
+
+    if record.user_id.id == False:
+        raise UserError("Responsible user must be specified.")
+
+    if record.schedule_date == False:
+        raise UserError("Schedule date must be specified.")
+
+    if record.x_studio_diagnosis_details == False:
+        raise UserError("Diagnosis details must be specified.")
+
+    record.write({"stage_id": 2})
 ```
   </details>
 - **MR - Maintenance Planning** (`server_action_2320_mr_maintenance_planning`, type `code`)
@@ -354,10 +342,10 @@ if record.id:
 
 ```python
 if record.id:
-  if record.priority == False:
-    raise UserError('Priority level must be defined.')
-    
-  record.write({'stage_id':5})
+    if record.priority == False:
+        raise UserError("Priority level must be defined.")
+
+    record.write({"stage_id": 5})
 ```
   </details>
 - **MR - Maintenance Repaired** (`server_action_2322_mr_maintenance_repaired`, type `object_write`)
@@ -409,7 +397,7 @@ if record.id:
   <details><summary>code (1 lines)</summary>
 
 ```python
-env['x_material_request'].create({'x_studio_many2one_field_THFu6':record.id })
+env["x_material_request"].create({"x_studio_many2one_field_THFu6": record.id})
 ```
   </details>
 - **MR create For MNT** (`server_action_1646_mr_create_for_mnt`, type `code`)
@@ -419,7 +407,7 @@ env['x_material_request'].create({'x_studio_many2one_field_THFu6':record.id })
   <details><summary>code (1 lines)</summary>
 
 ```python
-env['x_material_request'].create({'x_studio_many2one_field_THFu6':record.id })
+env["x_material_request"].create({"x_studio_many2one_field_THFu6": record.id})
 ```
   </details>
 - **Validate Maintenance  Request** (`server_action_1637_validate_maintenance_request`, type `code`)
@@ -430,8 +418,10 @@ env['x_material_request'].create({'x_studio_many2one_field_THFu6':record.id })
 
 ```python
 if record.production_id.id:
-  if record.maintenance_type == 'preventive':
-    raise UserError('Preventive Maintenance Type is not Allowed for Manufacture Related Requests.')
+    if record.maintenance_type == "preventive":
+        raise UserError(
+            "Preventive Maintenance Type is not Allowed for Manufacture Related Requests."
+        )
 ```
   </details>
 **Automations (2):**

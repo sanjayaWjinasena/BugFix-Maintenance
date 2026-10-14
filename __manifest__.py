@@ -1,11 +1,11 @@
 {
     # upgrade-testing branch: data files below are commented out - this branch installs functions only, no data is seeded.
-    'name': 'Jinasena : Module : Maintenance',
-    'version': '17.0.0.0.18',
-    'summary': 'Studio-to-Python port for BugFix-Maintenance',
-    'author': 'Jinasena Agricultural Machinery (Pvt) Ltd.',
-    'category': 'Human Resources/Maintenance',
-    'license': 'LGPL-3',
+    "name": "Jinasena : Module : Maintenance",
+    "version": "17.0.0.0.18",
+    "summary": "Studio-to-Python port for BugFix-Maintenance",
+    "author": "Jinasena Agricultural Machinery (Pvt) Ltd.",
+    "category": "Human Resources/Maintenance",
+    "license": "LGPL-3",
     # Do NOT depend on studio_customization -- Odoo SH does not ship
     # a manifest for it, listing it causes install skip.
     # v17.0.0.0.8: hotfix v17.0.0.0.7 - add mrp_maintenance dep.
@@ -49,24 +49,24 @@
     #   Fields:          0 gap
     # Also renamed to 'Jinasena : Module : Maintenance' + added shared
     # icon at static/description/icon.png.
-    'depends': ['base_setup', 'maintenance', 'base_automation', 'mrp_maintenance'],
-    'data': [
-        'data/defaults_final.xml',
-        'data/server_actions_f5.xml',
-        'data/server_actions.xml',
-        'data/server_actions_v2.xml',
-        'data/automations.xml',
-        'data/automations_v2.xml',
-        'data/window_actions.xml',
-        'views/maintenance_equipment_category_studio_ported.xml',
-        'views/maintenance_request_studio_ported.xml',
-        'views/maintenance_equipment_studio_ported.xml',
-        'views/maintenance_stage_studio_ported.xml',
-        'views/studio_ported_5_views.xml',
-        'data/server_actions_gap.xml',
-        'data/ir_defaults_gap.xml',  # upgrade-testing: form defaults shipped; record-specific ones commented inside
-        'views/maintenance_equipment_e_views.xml',
-        'views/maintenance_request_e_views.xml',
+    "depends": ["base_setup", "maintenance", "base_automation", "mrp_maintenance"],
+    "data": [
+        "data/defaults_final.xml",
+        "data/server_actions_f5.xml",
+        "data/server_actions.xml",
+        "data/server_actions_v2.xml",
+        "data/automations.xml",
+        "data/automations_v2.xml",
+        "data/window_actions.xml",
+        "views/maintenance_equipment_category_studio_ported.xml",
+        "views/maintenance_request_studio_ported.xml",
+        "views/maintenance_equipment_studio_ported.xml",
+        "views/maintenance_stage_studio_ported.xml",
+        "views/studio_ported_5_views.xml",
+        "data/server_actions_gap.xml",
+        "data/ir_defaults_gap.xml",  # upgrade-testing: form defaults shipped; record-specific ones commented inside
+        "views/maintenance_equipment_e_views.xml",
+        "views/maintenance_request_e_views.xml",
     ],
-    'application': True,
+    "application": True,
 }
