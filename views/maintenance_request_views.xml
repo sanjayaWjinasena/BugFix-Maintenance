@@ -1,10 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- BugFix-Maintenance v17.0.0.0.6: 5 Studio priority=99 view ports.
-     Full pre-flight: xpath resolution against target composed
-     arch, orphan x_* field strip (reverse-deps rule), modifier
-     sentinel injection, numeric action ref conversion. -->
 <odoo>
-
+  <record id="act_window_668_maintenance_requests" model="ir.actions.act_window">
+    <field name="name">Maintenance Requests</field>
+    <field name="res_model">maintenance.request</field>
+    <field name="view_mode">kanban,tree,form,pivot,graph,calendar,activity</field>
+    <field name="domain">[('maintenance_team_id', '=', active_id), ('maintenance_type', 'in', context.get('maintenance_type', ['preventive', 'corrective']))]</field>
+    <field name="context">{
+            'default_maintenance_team_id': active_id,
+        }</field>
+    <field name="help" type="html"><p class="o_view_nocontent_smiling_face">
+                Add a new maintenance request
+            </p><p>
+                Follow the process of the request and communicate with the collaborator.
+            </p>
+        </field>
+  </record>
+  <record id="ported_default_activity_vie_a2229fc7_c68c_4499_8d6d_40f805c9f25d" model="ir.ui.view">
+    <field name="name">Default activity view for ir.model(689,)</field>
+    <field name="model">maintenance.request</field>
+    <field name="key">studio_customization.default_activity_vie_a2229fc7-c68c-4499-8d6d-40f805c9f25d</field>
+    <field name="type">activity</field>
+    <field name="priority">16</field>
+    <field name="mode">primary</field>
+    <field name="arch" type="xml">
+      <activity string="Maintenance Request"><templates><div t-name="activity-box"><field name="name" modifiers="{&quot;required&quot;: true}"/></div></templates></activity>
+    </field>
+  </record>
+  <record id="ported_odoo_studio_equipmen_d67f3394_a9ef_4052_87b7_48d8f04b6c20" model="ir.ui.view">
+    <field name="name">Odoo Studio: equipment.request.form customization</field>
+    <field name="model">maintenance.request</field>
+    <field name="key">studio_customization.odoo_studio_equipmen_d67f3394-a9ef-4052-87b7-48d8f04b6c20</field>
+    <field name="type">form</field>
+    <field name="priority">99</field>
+    <field name="mode">extension</field>
+    <field name="inherit_id" ref="maintenance.hr_equipment_request_view_form"/>
+    <field name="arch" type="xml">
+      <data>
+        
+        
+        <xpath expr="//form[1]/sheet[1]/div[not(@name)][1]" position="before">
+          <div name="button_box" class="oe_button_box">
+            
+          </div>
+        </xpath>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      </data>
+    </field>
+  </record>
   <record id="ported_view_3254_odoo_studio_equipment_request_form_custo" model="ir.ui.view">
     <field name="name">Odoo Studio: equipment.request.form customization</field>
     <field name="model">maintenance.request</field>
@@ -65,7 +121,6 @@
       </data>
     </field>
   </record>
-
   <record id="ported_view_5072_equipment_request_form_button" model="ir.ui.view">
     <field name="name">equipment.request.form_Button</field>
     <field name="model">maintenance.request</field>
@@ -81,47 +136,54 @@
         </data>
     </field>
   </record>
-
-  <record id="ported_view_5333_odoo_studio_equipment_category_form_cust" model="ir.ui.view">
-    <field name="name">Odoo Studio: equipment.category.form customization</field>
-    <field name="model">maintenance.equipment.category</field>
-    <field name="inherit_id" ref="maintenance.hr_equipment_category_view_form"/>
-    <field name="priority">99</field>
-    <field name="arch" type="xml">
-      <data>
-        <xpath expr="//field[@name='technician_user_id']" position="after">
-          <field name="x_studio_journal_type"/>
-        </xpath>
-      </data>
-    </field>
-  </record>
-
-  <record id="ported_view_5332_odoo_studio_equipment_category_tree_cust" model="ir.ui.view">
-    <field name="name">Odoo Studio: equipment.category.tree customization</field>
-    <field name="model">maintenance.equipment.category</field>
-    <field name="inherit_id" ref="maintenance.hr_equipment_category_view_tree"/>
-    <field name="priority">99</field>
-    <field name="arch" type="xml">
-      <data>
-        <xpath expr="//field[@name='technician_user_id']" position="after">
-          <field optional="show" name="x_studio_journal_type" string="Journal Type"/>
-        </xpath>
-      </data>
-    </field>
-  </record>
-
-  <record id="ported_view_5071_odoo_studio_equipment_stage_tree_customi" model="ir.ui.view">
-    <field name="name">Odoo Studio: equipment.stage.tree customization</field>
-    <field name="model">maintenance.stage</field>
-    <field name="inherit_id" ref="maintenance.hr_equipment_stage_view_tree"/>
-    <field name="priority">99</field>
-    <field name="arch" type="xml">
-      <data>
-        <xpath expr="//field[@name='done']" position="after">
-          <field name="id" optional="show"/>
-        </xpath>
-      </data>
-    </field>
-  </record>
-
+    <record id="view_5318_odoo_studio_equipment_request_tree_customization_e" model="ir.ui.view">
+      <field name="name">Odoo Studio: equipment.request.tree customization</field>
+      <field name="model">maintenance.request</field>
+      <field name="type">tree</field>
+      <field name="priority">160</field>
+      <field name="inherit_id" ref="maintenance.hr_equipment_request_view_tree"/>
+      <field name="mode">extension</field>
+      <field name="arch" type="xml">
+        <data>
+  <xpath expr="//tree[1]/field[@name='name']" position="after">
+    <field name="description" optional="show"/>
+    <field name="create_date" optional="show"/>
+  </xpath>
+  <xpath expr="//field[@name='request_date']" position="after">
+    <field name="schedule_date" optional="show"/>
+    <field name="close_date" optional="show"/>
+  </xpath>
+</data>
+      </field>
+    </record>
+    <record id="view_3771_default_activity_view_for_ir_model_689_e" model="ir.ui.view">
+      <field name="name">Default activity view for ir.model(689,)</field>
+      <field name="model">maintenance.request</field>
+      <field name="type">activity</field>
+      <field name="arch" type="xml">
+        <activity string="Maintenance Request"><templates><div t-name="activity-box"><field name="name" required="1"/></div></templates></activity>
+      </field>
+    </record>
+    <record id="view_5072_equipment_request_form_button_e" model="ir.ui.view">
+      <field name="name">equipment.request.form_Button</field>
+      <field name="model">maintenance.request</field>
+      <field name="type">form</field>
+      <field name="priority">99</field>
+      <field name="inherit_id" ref="maintenance.hr_equipment_request_view_form"/>
+      <field name="mode">extension</field>
+      <field name="arch" type="xml">
+        <data>
+    <xpath expr="//header/button[@name='archive_equipment_request']" position="after">
+      <!-- STRIPPED action button aid=2320 unresolvable -->
+    </xpath>
+    <!-- STRIPPED xpath: numeric button ref unresolvable -->
+    <!-- STRIPPED xpath: numeric button ref unresolvable -->
+    <!-- STRIPPED xpath: numeric button ref unresolvable -->
+    <!-- STRIPPED xpath: numeric button ref unresolvable -->
+    <xpath expr="//field[@name='stage_id']" position="attributes">
+      <attribute name="options">{'clickable': False}</attribute>
+    </xpath>
+  </data>
+      </field>
+    </record>
 </odoo>

@@ -51,22 +51,12 @@
     # icon at static/description/icon.png.
     "depends": ["base_setup", "maintenance", "base_automation", "mrp_maintenance"],
     "data": [
-        "data/defaults_final.xml",
-        "data/server_actions_f5.xml",
-        "data/server_actions.xml",
-        "data/server_actions_v2.xml",
-        "data/automations.xml",
-        "data/automations_v2.xml",
-        "data/window_actions.xml",
-        "views/maintenance_equipment_category_studio_ported.xml",
-        "views/maintenance_request_studio_ported.xml",
-        "views/maintenance_equipment_studio_ported.xml",
-        "views/maintenance_stage_studio_ported.xml",
-        "views/studio_ported_5_views.xml",
-        "data/server_actions_gap.xml",
-        "data/ir_defaults_gap.xml",  # upgrade-testing: form defaults shipped; record-specific ones commented inside
-        "views/maintenance_equipment_e_views.xml",
-        "views/maintenance_request_e_views.xml",
+        "data/maintenance_equipment_data.xml",
+        "data/maintenance_request_data.xml",
+        "views/maintenance_request_views.xml",
+        "views/maintenance_equipment_category_views.xml",
+        "views/maintenance_stage_views.xml",
+        "views/maintenance_equipment_views.xml",
     ],
     "application": True,
 }
