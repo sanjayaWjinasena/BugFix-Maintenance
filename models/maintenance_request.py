@@ -4,7 +4,7 @@ from odoo import fields, models
 class MaintenanceRequest(models.Model):
     _inherit = "maintenance.request"
 
-    diagnosis_details = fields.Text(string="Diagnosis Details")
+    diagnosis_details = fields.Text()
     float_field_hmeW9 = fields.Float(string="New Decimal")
     integer_field_1Zbhs = fields.Integer(string="New Integer")
     journal_type_1 = fields.Many2one(
