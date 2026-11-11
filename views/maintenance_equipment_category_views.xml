@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <record id="ported_view_5333_odoo_studio_equipment_category_form_cust" model="ir.ui.view">
+  <record id="view_equipment_category_form_inherit" model="ir.ui.view">
     <field name="name">Odoo Studio: equipment.category.form customization</field>
     <field name="model">maintenance.equipment.category</field>
     <field name="inherit_id" ref="maintenance.hr_equipment_category_view_form"/>
@@ -13,7 +13,7 @@
       </data>
     </field>
   </record>
-  <record id="ported_view_5332_odoo_studio_equipment_category_tree_cust" model="ir.ui.view">
+  <record id="view_equipment_category_tree_inherit" model="ir.ui.view">
     <field name="name">Odoo Studio: equipment.category.tree customization</field>
     <field name="model">maintenance.equipment.category</field>
     <field name="inherit_id" ref="maintenance.hr_equipment_category_view_tree"/>

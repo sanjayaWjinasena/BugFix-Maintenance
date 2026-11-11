@@ -28,7 +28,7 @@
     # v17.0.0.0.7: hotfix v17.0.0.0.6 - add base_automation dep.
     # v17.0.0.0.6 crashed with:
     #   ValueError: Wrong value for ir.actions.server.usage: 'base_automation'
-    # Root cause: server_action_1566_mnt_code_gen (from existing
+    # Root cause: action_mnt_code_gen (from existing
     # data/server_actions.xml) uses usage='base_automation'. That
     # selection value is provided by the base_automation module -
     # NOT by base or maintenance. Our v0.0.6 shipped 12 new server

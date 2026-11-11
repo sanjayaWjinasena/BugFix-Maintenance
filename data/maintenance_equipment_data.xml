@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <record id="sa_f5_maintenance_equipment_update_cost_per_hour_in_work_center" model="ir.actions.server">
+  <record id="action_maintenance_equipment_update_cost_per_hour_in_work_center" model="ir.actions.server">
     <field name="name">Update Cost Per Hour in Work Center</field>
     <field name="model_id" search="[('model', '=', 'maintenance.equipment')]"/>
     <field name="state">code</field>
@@ -18,7 +18,7 @@ if work_center:
     <field name="usage">base_automation</field>
     <field name="binding_view_types">list,form</field>
   </record>
-  <record id="server_action_2545_update_cost_per_hour_in_work_center" model="ir.actions.server">
+  <record id="action_update_cost_per_hour_in_work_center" model="ir.actions.server">
     <field name="name">Update Cost Per Hour in Work Center</field>
     <field name="model_id" search="[('model', '=', 'maintenance.equipment')]"/>
     <field name="state">code</field>
@@ -35,14 +35,14 @@ if work_center:
      ]]></field>
     <field name="usage">base_automation</field>
   </record>
-  <record id="base_automation_251_update_cost_per_hour_in_work_center" model="base.automation">
+  <record id="automation_update_cost_per_hour_in_work_center" model="base.automation">
     <field name="name">Update Cost Per Hour in Work Center</field>
     <field name="active" eval="True"/>
     <field name="model_id" search="[('model', '=', 'maintenance.equipment')]"/>
     <field name="trigger">on_create_or_write</field>
-    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Maintenance.server_action_2545_update_cost_per_hour_in_work_center')])]"/>
+    <field name="action_server_ids" eval="[(6, 0, [ref('BugFix-Maintenance.action_update_cost_per_hour_in_work_center')])]"/>
   </record>
-  <record id="server_action_2545_update_cost_per_hour_in_work_center" model="ir.actions.server">
+  <record id="action_update_cost_per_hour_in_work_center" model="ir.actions.server">
     <field name="name">Update Cost Per Hour in Work Center</field>
     <field name="model_id" ref="maintenance.model_maintenance_equipment"/>
     <field name="state">code</field>

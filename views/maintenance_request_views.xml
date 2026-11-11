@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <record id="act_window_668_maintenance_requests" model="ir.actions.act_window">
+  <record id="action_maintenance_requests" model="ir.actions.act_window">
     <field name="name">Maintenance Requests</field>
     <field name="res_model">maintenance.request</field>
     <field name="view_mode">kanban,tree,form,pivot,graph,calendar,activity</field>
@@ -15,7 +15,7 @@
             </p>
         </field>
   </record>
-  <record id="ported_default_activity_vie_a2229fc7_c68c_4499_8d6d_40f805c9f25d" model="ir.ui.view">
+  <record id="view_maintenance_request_activity_2" model="ir.ui.view">
     <field name="name">Default activity view for ir.model(689,)</field>
     <field name="model">maintenance.request</field>
     <field name="key">studio_customization.default_activity_vie_a2229fc7-c68c-4499-8d6d-40f805c9f25d</field>
@@ -26,7 +26,7 @@
       <activity string="Maintenance Request"><templates><div t-name="activity-box"><field name="name" modifiers="{&quot;required&quot;: true}"/></div></templates></activity>
     </field>
   </record>
-  <record id="ported_odoo_studio_equipmen_d67f3394_a9ef_4052_87b7_48d8f04b6c20" model="ir.ui.view">
+  <record id="view_equipment_request_form_inherit_2" model="ir.ui.view">
     <field name="name">Odoo Studio: equipment.request.form customization</field>
     <field name="model">maintenance.request</field>
     <field name="key">studio_customization.odoo_studio_equipmen_d67f3394-a9ef-4052-87b7-48d8f04b6c20</field>
@@ -61,7 +61,7 @@
       </data>
     </field>
   </record>
-  <record id="ported_view_3254_odoo_studio_equipment_request_form_custo" model="ir.ui.view">
+  <record id="view_equipment_request_form_inherit" model="ir.ui.view">
     <field name="name">Odoo Studio: equipment.request.form customization</field>
     <field name="model">maintenance.request</field>
     <field name="inherit_id" ref="maintenance.hr_equipment_request_view_form"/>
@@ -121,7 +121,7 @@
       </data>
     </field>
   </record>
-  <record id="ported_view_5072_equipment_request_form_button" model="ir.ui.view">
+  <record id="view_equipment_request_form_button_2" model="ir.ui.view">
     <field name="name">equipment.request.form_Button</field>
     <field name="model">maintenance.request</field>
     <field name="inherit_id" ref="maintenance.hr_equipment_request_view_form"/>
@@ -136,7 +136,7 @@
         </data>
     </field>
   </record>
-    <record id="view_5318_odoo_studio_equipment_request_tree_customization_e" model="ir.ui.view">
+    <record id="view_equipment_request_tree_inherit" model="ir.ui.view">
       <field name="name">Odoo Studio: equipment.request.tree customization</field>
       <field name="model">maintenance.request</field>
       <field name="type">tree</field>
@@ -156,7 +156,7 @@
 </data>
       </field>
     </record>
-    <record id="view_3771_default_activity_view_for_ir_model_689_e" model="ir.ui.view">
+    <record id="view_maintenance_request_activity" model="ir.ui.view">
       <field name="name">Default activity view for ir.model(689,)</field>
       <field name="model">maintenance.request</field>
       <field name="type">activity</field>
@@ -164,7 +164,7 @@
         <activity string="Maintenance Request"><templates><div t-name="activity-box"><field name="name" required="1"/></div></templates></activity>
       </field>
     </record>
-    <record id="view_5072_equipment_request_form_button_e" model="ir.ui.view">
+    <record id="view_equipment_request_form_button" model="ir.ui.view">
       <field name="name">equipment.request.form_Button</field>
       <field name="model">maintenance.request</field>
       <field name="type">form</field>

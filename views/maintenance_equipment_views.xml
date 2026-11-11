@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="view_5495_odoo_studio_equipment_form_customization_e" model="ir.ui.view">
+    <record id="view_equipment_form_inherit" model="ir.ui.view">
       <field name="name">Odoo Studio: equipment.form customization</field>
       <field name="model">maintenance.equipment</field>
       <field name="type">form</field>
