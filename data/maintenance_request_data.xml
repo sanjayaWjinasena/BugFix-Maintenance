@@ -85,7 +85,7 @@
 
   
 
-  mr = env['x_material_request'].create({'x_studio_many2one_field_THFu6':record.id, 'x_studio_journal_type':record.x_studio_journal_type_1.id})  
+  mr = env['material_request'].create({'many2one_field_THFu6':record.id, 'journal_type':record.journal_type_1.id})  
 
   
 
@@ -97,7 +97,7 @@
 
             'type': 'ir.actions.act_window',
 
-            'res_model': 'x_material_request',
+            'res_model': 'material_request',
 
             'view_mode': 'tree,form',
 
@@ -130,7 +130,7 @@
   if record.schedule_date == False:
     raise UserError('Schedule date must be specified.')
     
-  if record.x_studio_diagnosis_details == False:
+  if record.diagnosis_details == False:
     raise UserError('Diagnosis details must be specified.')  
     
     
@@ -164,7 +164,7 @@
     <field name="model_id" search="[('model', '=', 'maintenance.request')]"/>
     <field name="state">code</field>
     <field name="usage">ir_actions_server</field>
-    <field name="code"><![CDATA[env['x_material_request'].create({'x_studio_many2one_field_THFu6':record.id })
+    <field name="code"><![CDATA[env['material_request'].create({'many2one_field_THFu6':record.id })
 
 ]]></field>
   </record>
@@ -173,7 +173,7 @@
     <field name="model_id" search="[('model', '=', 'maintenance.request')]"/>
     <field name="state">code</field>
     <field name="usage">ir_actions_server</field>
-    <field name="code"><![CDATA[env['x_material_request'].create({'x_studio_many2one_field_THFu6':record.id })
+    <field name="code"><![CDATA[env['material_request'].create({'many2one_field_THFu6':record.id })
 
 ]]></field>
   </record>
@@ -216,8 +216,8 @@ record['name'] =env['ir.sequence'].next_by_code('mnt.req.seq')
     ]]></field>
   </record>
     <data noupdate="1">
-    <record id="default_387_maintenance_request_x_studio_integer_field_1Zbhs" model="ir.default">
-      <field name="field_id" ref="BugFix-Maintenance.field_maintenance_request__x_studio_integer_field_1Zbhs"/>
+    <record id="default_387_maintenance_request_integer_field_1Zbhs" model="ir.default">
+      <field name="field_id" ref="BugFix-Maintenance.field_maintenance_request__integer_field_1Zbhs"/>
       <field name="json_value">"0"</field>
     </record>
     </data>

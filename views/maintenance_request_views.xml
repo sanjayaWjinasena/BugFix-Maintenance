@@ -97,7 +97,7 @@
         <xpath expr="//field[@name='user_id']" position="attributes">
           <attribute name="invisible">stage_id in [1]</attribute><attribute name="readonly">(stage_id == 4) or ((stage_id == 3) or (stage_id == 2))</attribute></xpath>
         <xpath expr="//field[@name='user_id']" position="after">
-          <field name="x_studio_float_field_hmeW9"/>
+          <field name="float_field_hmeW9"/>
         </xpath>
         <xpath expr="//field[@name='schedule_date']" position="attributes">
           <attribute name="invisible">stage_id in [1]</attribute><attribute name="readonly">(stage_id == 4) or ((stage_id == 3) or (stage_id == 2))</attribute></xpath>
@@ -116,7 +116,7 @@
           <attribute name="string">Diagnosis Details</attribute>
         <attribute name="invisible">1</attribute></xpath>
         <xpath expr="//field[@name='description']" position="after">
-          <field name="x_studio_diagnosis_details" string="Diagnosis Details"/>
+          <field name="diagnosis_details" string="Diagnosis Details"/>
         </xpath>
       </data>
     </field>

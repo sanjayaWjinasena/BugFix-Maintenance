@@ -21,7 +21,7 @@ BugFix-Maintenance is the Studio-to-Python port of Jinasena's Maintenance custom
 - Equipment categories: a Journal Type link on the category form and list.
 - Maintenance requests: Diagnosis Details and Journal Type fields, a stage bar that cannot be clicked, list columns, and ported stage-change actions (Planning, In Progress with mandatory-field checks, Repaired, Scrap), Material Request creation and a check blocking Preventive type on manufacturing-linked requests.
 - Maintenance stages: an ID column so users can see the stage ids used by the workflow actions.
-- Journal Types: a new lookup model (x_journal_types) owned here and used by Accounting and Stock repos.
+- Journal Types: a new lookup model (journal_types) owned here and used by Accounting and Stock repos.
 <!-- /SUMMARY -->
 
 ## Module dependencies
@@ -62,7 +62,7 @@ graph LR
 | `maintenance.mixin` | Maintenance Maintained Item | extends (maintenance) | 0 | 0 | 0 | 0 |
 | `maintenance.request` | Maintenance Request | extends (maintenance) | 6 | 7 | 15 | 0 |
 | `maintenance.stage` | Maintenance Stage | extends (maintenance) | 0 | 1 | 0 | 0 |
-| `x_journal_types` | Journal Types | created | 12 | 0 | 0 | 0 |
+| `journal_types` | Journal Types | created | 12 | 0 | 0 | 0 |
 
 ### `maintenance.equipment` — Maintenance Equipment
 
@@ -78,9 +78,9 @@ This repo adds three manually entered figures to equipment, Electricity, Water a
 
 | Field | Label | Type | Function | How it gets its value | Depends on | Used by |
 |---|---|---|---|---|---|---|
-| `x_studio_electricity` | Electricity | float | Electricity figure for the equipment, entered by the user next to Cost on the equipment form; not used by any logic in this repo. | stored |  | `view BugFix-Maintenance.view_5495_odoo_studio_equipment_form_customization_e` |
-| `x_studio_lubricant` | Lubricant | float | Lubricant figure for the equipment, entered by the user next to Cost on the equipment form; not used by any logic in this repo. | stored |  | `view BugFix-Maintenance.view_5495_odoo_studio_equipment_form_customization_e` |
-| `x_studio_water` | Water | float | Water figure for the equipment, entered by the user next to Cost on the equipment form; not used by any logic in this repo. | stored |  | `view BugFix-Maintenance.view_5495_odoo_studio_equipment_form_customization_e` |
+| `electricity` | Electricity | float | Electricity figure for the equipment, entered by the user next to Cost on the equipment form; not used by any logic in this repo. | stored |  | `view BugFix-Maintenance.view_5495_odoo_studio_equipment_form_customization_e` |
+| `lubricant` | Lubricant | float | Lubricant figure for the equipment, entered by the user next to Cost on the equipment form; not used by any logic in this repo. | stored |  | `view BugFix-Maintenance.view_5495_odoo_studio_equipment_form_customization_e` |
+| `water` | Water | float | Water figure for the equipment, entered by the user next to Cost on the equipment form; not used by any logic in this repo. | stored |  | `view BugFix-Maintenance.view_5495_odoo_studio_equipment_form_customization_e` |
 
 **Server actions (2):**
 
@@ -94,12 +94,12 @@ This repo adds three manually entered figures to equipment, Electricity, Water a
 work_center = env["mrp.workcenter"].search([("equipment_ids", "=", record.id)])
 if work_center:
     for work_centers in work_center:
-        if work_centers.x_studio_ot_cost_per_hour > 0.00:
-            # work_centers.write({'costs_hour':(work_centers.x_studio_overhead_cost_hour + work_centers.x_studio_general_cost_hour + work_centers.x_studio_ot_cost_per_hour)})
-            work_centers.write({"costs_hour": (work_centers.x_studio_ot_cost_per_hour)})
+        if work_centers.ot_cost_per_hour > 0.00:
+            # work_centers.write({'costs_hour':(work_centers.overhead_cost_hour + work_centers.general_cost_hour + work_centers.ot_cost_per_hour)})
+            work_centers.write({"costs_hour": (work_centers.ot_cost_per_hour)})
         else:
-            # Ework_centers.write({'costs_hour':(work_centers.x_studio_labour_cost_hour + work_centers.x_studio_overhead_cost_hour + work_centers.x_studio_general_cost_hour)})
-            work_centers.write({"costs_hour": (work_centers.x_studio_labour_cost_hour)})
+            # Ework_centers.write({'costs_hour':(work_centers.labour_cost_hour + work_centers.overhead_cost_hour + work_centers.general_cost_hour)})
+            work_centers.write({"costs_hour": (work_centers.labour_cost_hour)})
 ```
   </details>
 - **Update Cost Per Hour in Work Center** (`sa_f5_maintenance_equipment_update_cost_per_hour_in_work_center`, type `code`)
@@ -112,12 +112,12 @@ if work_center:
 work_center = env["mrp.workcenter"].search([("equipment_ids", "=", record.id)])
 if work_center:
     for work_centers in work_center:
-        if work_centers.x_studio_ot_cost_per_hour > 0.00:
-            # work_centers.write({'costs_hour':(work_centers.x_studio_overhead_cost_hour + work_centers.x_studio_general_cost_hour + work_centers.x_studio_ot_cost_per_hour)})
-            work_centers.write({"costs_hour": (work_centers.x_studio_ot_cost_per_hour)})
+        if work_centers.ot_cost_per_hour > 0.00:
+            # work_centers.write({'costs_hour':(work_centers.overhead_cost_hour + work_centers.general_cost_hour + work_centers.ot_cost_per_hour)})
+            work_centers.write({"costs_hour": (work_centers.ot_cost_per_hour)})
         else:
-            # Ework_centers.write({'costs_hour':(work_centers.x_studio_labour_cost_hour + work_centers.x_studio_overhead_cost_hour + work_centers.x_studio_general_cost_hour)})
-            work_centers.write({"costs_hour": (work_centers.x_studio_labour_cost_hour)})
+            # Ework_centers.write({'costs_hour':(work_centers.labour_cost_hour + work_centers.overhead_cost_hour + work_centers.general_cost_hour)})
+            work_centers.write({"costs_hour": (work_centers.labour_cost_hour)})
 ```
   </details>
 **Automations (1):**
@@ -130,7 +130,7 @@ if work_center:
 
 | Name | Record name | Type | What it changes | Function | Depends on | Used by |
 |---|---|---|---|---|---|---|
-| Odoo Studio: equipment.form customization | `view_5495_odoo_studio_equipment_form_customization_e` | form | after `//field[@name='cost']`: add field x_studio_electricity, field x_studio_water, field x_studio_lubricant | Adds Electricity, Water and Lubricant fields after Cost on the maintenance equipment form. | `maintenance.equipment.x_studio_electricity`<br>`maintenance.equipment.x_studio_lubricant`<br>`maintenance.equipment.x_studio_water`<br>`view maintenance.hr_equipment_view_form` (maintenance) |  |
+| Odoo Studio: equipment.form customization | `view_5495_odoo_studio_equipment_form_customization_e` | form | after `//field[@name='cost']`: add field electricity, field water, field lubricant | Adds Electricity, Water and Lubricant fields after Cost on the maintenance equipment form. | `maintenance.equipment.electricity`<br>`maintenance.equipment.lubricant`<br>`maintenance.equipment.water`<br>`view maintenance.hr_equipment_view_form` (maintenance) |  |
 
 ### `maintenance.equipment.category` — Maintenance Equipment Category
 
@@ -139,21 +139,21 @@ if work_center:
 **Summary:**
 
 <!-- SUMMARY:model:maintenance.equipment.category -->
-This repo adds a Journal Type link (to x_journal_types) to equipment categories. It is shown after the Responsible technician on the category form and as an optional column in the category list.
+This repo adds a Journal Type link (to journal_types) to equipment categories. It is shown after the Responsible technician on the category form and as an optional column in the category list.
 <!-- /SUMMARY -->
 
 **Fields (1):**
 
 | Field | Label | Type | Function | How it gets its value | Depends on | Used by |
 |---|---|---|---|---|---|---|
-| `x_studio_journal_type` | Journal Type | many2one → `x_journal_types` | Journal Type linked to an equipment category, chosen by the user on the category form and shown as an optional column in the category list. | stored | `model x_journal_types` | `view BugFix-Maintenance.ported_view_5332_odoo_studio_equipment_category_tree_cust`<br>`view BugFix-Maintenance.ported_view_5333_odoo_studio_equipment_category_form_cust` |
+| `journal_type` | Journal Type | many2one → `journal_types` | Journal Type linked to an equipment category, chosen by the user on the category form and shown as an optional column in the category list. | stored | `model journal_types` | `view BugFix-Maintenance.ported_view_5332_odoo_studio_equipment_category_tree_cust`<br>`view BugFix-Maintenance.ported_view_5333_odoo_studio_equipment_category_form_cust` |
 
 **Views (2):**
 
 | Name | Record name | Type | What it changes | Function | Depends on | Used by |
 |---|---|---|---|---|---|---|
-| Odoo Studio: equipment.category.form customization | `ported_view_5333_odoo_studio_equipment_category_form_cust` | form | after `//field[@name='technician_user_id']`: add field x_studio_journal_type | Adds the Journal Type field after the Responsible technician on the equipment category form. | `maintenance.equipment.category.x_studio_journal_type`<br>`view maintenance.hr_equipment_category_view_form` (maintenance) |  |
-| Odoo Studio: equipment.category.tree customization | `ported_view_5332_odoo_studio_equipment_category_tree_cust` | tree | after `//field[@name='technician_user_id']`: add field x_studio_journal_type | Adds an optional Journal Type column after the Responsible technician in the equipment category list. | `maintenance.equipment.category.x_studio_journal_type`<br>`view maintenance.hr_equipment_category_view_tree` (maintenance) |  |
+| Odoo Studio: equipment.category.form customization | `ported_view_5333_odoo_studio_equipment_category_form_cust` | form | after `//field[@name='technician_user_id']`: add field journal_type | Adds the Journal Type field after the Responsible technician on the equipment category form. | `maintenance.equipment.category.journal_type`<br>`view maintenance.hr_equipment_category_view_form` (maintenance) |  |
+| Odoo Studio: equipment.category.tree customization | `ported_view_5332_odoo_studio_equipment_category_tree_cust` | tree | after `//field[@name='technician_user_id']`: add field journal_type | Adds an optional Journal Type column after the Responsible technician in the equipment category list. | `maintenance.equipment.category.journal_type`<br>`view maintenance.hr_equipment_category_view_tree` (maintenance) |  |
 
 ### `maintenance.mixin` — Maintenance Maintained Item
 
@@ -169,7 +169,7 @@ Purpose not evident from code. The repo declares an empty Python extension of th
 
 *Extends a model created by `maintenance`.* Python: `models/maintenance_request.py`.
 
-Other repos that use this model: `approval rule BugFix-Approvals.rule_83_maintenance_request_archive_equipment_request_user_types_int` (BugFix-Approvals)<br>`stock.picking.x_studio_maintenance_request_` (BugFix-Stock)<br>`x_material_request.x_studio_many2one_field_THFu6` (BugFix-Stock)<br>`x_mr_config.x_studio_many2one_field_6cvHX` (BugFix-Stock)
+Other repos that use this model: `approval rule BugFix-Approvals.rule_83_maintenance_request_archive_equipment_request_user_types_int` (BugFix-Approvals)<br>`stock.picking.maintenance_request_` (BugFix-Stock)<br>`material_request.many2one_field_THFu6` (BugFix-Stock)<br>`mr_config.many2one_field_6cvHX` (BugFix-Stock)
 
 **Summary:**
 
@@ -181,12 +181,12 @@ This repo adds Diagnosis Details, a read-only Journal Type, and some unlabelled 
 
 | Field | Label | Type | Function | How it gets its value | Depends on | Used by |
 |---|---|---|---|---|---|---|
-| `x_studio_diagnosis_details` | Diagnosis Details | text | Free-text diagnosis of the fault, entered on the request form under the label Diagnosis Details; the MR - Maintenance In progress action refuses to move the request to In Progress while it is empty. | stored |  | `server action BugFix-Maintenance.server_action_2318_mr_maintenance_in_progress`<br>`view BugFix-Maintenance.ported_view_3254_odoo_studio_equipment_request_form_custo` |
-| `x_studio_float_field_hmeW9` | New Decimal | float | Unlabelled decimal ("New Decimal") shown after the Responsible user on the request form; entered manually and not used by any logic. | stored |  | `view BugFix-Maintenance.ported_view_3254_odoo_studio_equipment_request_form_custo` |
-| `x_studio_integer_field_1Zbhs` | New Integer | integer | Unlabelled integer ("New Integer") with a default value of 0; not shown on any view or used by any logic in this repo. | stored |  | `default BugFix-Maintenance.default_387_maintenance_request_x_studio_integer_field_1Zbhs` |
-| `x_studio_journal_type_1` | Journal Type | many2one → `x_journal_types` | Read-only Journal Type on a maintenance request; copied onto the Material Request created by the MR - Create MR from Maintenance Request action. | stored | `model x_journal_types` | `server action BugFix-Maintenance.server_action_2326_mr_create_mr_from_maintenance_request` |
-| `x_x_studio_maintenance_request___stock_picking_count` | Maintenance Request # count | integer | Intended count of stock transfers linked to the request (Studio smart-button counter); ported as a plain non-stored integer with no compute, so it always shows 0. | not stored |  |  |
-| `x_x_studio_many2one_field_THFu6__x_material_request_count` | MR | integer | Intended count of Material Requests linked to this maintenance request (Studio smart-button counter); ported as a plain non-stored integer with no compute, so it always shows 0. | not stored |  |  |
+| `diagnosis_details` | Diagnosis Details | text | Free-text diagnosis of the fault, entered on the request form under the label Diagnosis Details; the MR - Maintenance In progress action refuses to move the request to In Progress while it is empty. | stored |  | `server action BugFix-Maintenance.server_action_2318_mr_maintenance_in_progress`<br>`view BugFix-Maintenance.ported_view_3254_odoo_studio_equipment_request_form_custo` |
+| `float_field_hmeW9` | New Decimal | float | Unlabelled decimal ("New Decimal") shown after the Responsible user on the request form; entered manually and not used by any logic. | stored |  | `view BugFix-Maintenance.ported_view_3254_odoo_studio_equipment_request_form_custo` |
+| `integer_field_1Zbhs` | New Integer | integer | Unlabelled integer ("New Integer") with a default value of 0; not shown on any view or used by any logic in this repo. | stored |  | `default BugFix-Maintenance.default_387_maintenance_request_integer_field_1Zbhs` |
+| `journal_type_1` | Journal Type | many2one → `journal_types` | Read-only Journal Type on a maintenance request; copied onto the Material Request created by the MR - Create MR from Maintenance Request action. | stored | `model journal_types` | `server action BugFix-Maintenance.server_action_2326_mr_create_mr_from_maintenance_request` |
+| `maintenance_request___stock_picking_count` | Maintenance Request # count | integer | Intended count of stock transfers linked to the request (Studio smart-button counter); ported as a plain non-stored integer with no compute, so it always shows 0. | not stored |  |  |
+| `many2one_field_THFu6__x_material_request_count` | MR | integer | Intended count of Material Requests linked to this maintenance request (Studio smart-button counter); ported as a plain non-stored integer with no compute, so it always shows 0. | not stored |  |  |
 
 **Server actions (13):**
 
@@ -286,16 +286,16 @@ record["name"] = env["ir.sequence"].next_by_code("mnt.req.seq")
   </details>
 - **MR - Create MR from Maintenance Request** (`server_action_2326_mr_create_mr_from_maintenance_request`, type `code`)
   - Function: Creates a Material Request linked to the maintenance request, copying its Journal Type. It builds an action to open the new MR but never assigns it to `action`, so nothing opens. Its form button was stripped during porting.
-  - Depends on: `maintenance.request.x_studio_journal_type_1`, `model maintenance.request` (maintenance), `model x_material_request` (BugFix-Stock)
+  - Depends on: `maintenance.request.journal_type_1`, `model maintenance.request` (maintenance), `model material_request` (BugFix-Stock)
   - Used by: — (not linked to a button, menu or automation)
   <details><summary>code (27 lines)</summary>
 
 ```python
 if record.id:
-    mr = env["x_material_request"].create(
+    mr = env["material_request"].create(
         {
-            "x_studio_many2one_field_THFu6": record.id,
-            "x_studio_journal_type": record.x_studio_journal_type_1.id,
+            "many2one_field_THFu6": record.id,
+            "journal_type": record.journal_type_1.id,
         }
     )
 
@@ -303,7 +303,7 @@ if record.id:
         "name": "RFQ",
         "domain": [("id", "=", mr.id)],
         "type": "ir.actions.act_window",
-        "res_model": "x_material_request",
+        "res_model": "material_request",
         "view_mode": "tree,form",
         "view_type": "form",
         "view_id": False,
@@ -313,7 +313,7 @@ if record.id:
   </details>
 - **MR - Maintenance In progress** (`server_action_2318_mr_maintenance_in_progress`, type `code`)
   - Function: Checks that Duration, Responsible, Scheduled Date and Diagnosis Details are filled in (raising an error otherwise), then moves the request to stage ID 2 (In Progress). Its form button was stripped during porting.
-  - Depends on: `maintenance.request.duration` (maintenance), `maintenance.request.schedule_date` (maintenance), `maintenance.request.user_id` (maintenance), `maintenance.request.x_studio_diagnosis_details`, `model maintenance.request` (maintenance)
+  - Depends on: `maintenance.request.duration` (maintenance), `maintenance.request.schedule_date` (maintenance), `maintenance.request.user_id` (maintenance), `maintenance.request.diagnosis_details`, `model maintenance.request` (maintenance)
   - Used by: — (not linked to a button, menu or automation)
   <details><summary>code (15 lines)</summary>
 
@@ -328,7 +328,7 @@ if record.id:
     if record.schedule_date == False:
         raise UserError("Schedule date must be specified.")
 
-    if record.x_studio_diagnosis_details == False:
+    if record.diagnosis_details == False:
         raise UserError("Diagnosis details must be specified.")
 
     record.write({"stage_id": 2})
@@ -392,22 +392,22 @@ if record.id:
   </details>
 - **MR create For MNT** (`server_action_1649_mr_create_for_mnt`, type `code`)
   - Function: Creates a new Material Request linked to the current maintenance request. Duplicate of action 1646.
-  - Depends on: `model maintenance.request` (maintenance), `model x_material_request` (BugFix-Stock)
+  - Depends on: `model maintenance.request` (maintenance), `model material_request` (BugFix-Stock)
   - Used by: — (not linked to a button, menu or automation)
   <details><summary>code (1 lines)</summary>
 
 ```python
-env["x_material_request"].create({"x_studio_many2one_field_THFu6": record.id})
+env["material_request"].create({"many2one_field_THFu6": record.id})
 ```
   </details>
 - **MR create For MNT** (`server_action_1646_mr_create_for_mnt`, type `code`)
   - Function: Creates a new Material Request linked to the current maintenance request. Duplicate of action 1649.
-  - Depends on: `model maintenance.request` (maintenance), `model x_material_request` (BugFix-Stock)
+  - Depends on: `model maintenance.request` (maintenance), `model material_request` (BugFix-Stock)
   - Used by: — (not linked to a button, menu or automation)
   <details><summary>code (1 lines)</summary>
 
 ```python
-env["x_material_request"].create({"x_studio_many2one_field_THFu6": record.id})
+env["material_request"].create({"many2one_field_THFu6": record.id})
 ```
   </details>
 - **Validate Maintenance  Request** (`server_action_1637_validate_maintenance_request`, type `code`)
@@ -444,7 +444,7 @@ if record.production_id.id:
 | Default activity view for ir.model(689,) | `ported_default_activity_vie_a2229fc7_c68c_4499_8d6d_40f805c9f25d` | activity | full activity layout with 1 fields | Activity view for maintenance requests that shows each request by its Name. Duplicate of view 3771. | `maintenance.request.name` (maintenance) |  |
 | Default activity view for ir.model(689,) | `view_3771_default_activity_view_for_ir_model_689_e` | activity | full activity layout with 1 fields | Activity view for maintenance requests that shows each request by its required Name. Duplicate of the ported activity view. | `maintenance.request.name` (maintenance) |  |
 | Odoo Studio: equipment.request.form customization | `ported_odoo_studio_equipmen_d67f3394_a9ef_4052_87b7_48d8f04b6c20` | form | before `//form[1]/sheet[1]/div[not(@name)][1]`: add div | Adds an empty smart-button box at the top of the maintenance request form; it has no visible effect on its own. | `view maintenance.hr_equipment_request_view_form` (maintenance) |  |
-| Odoo Studio: equipment.request.form customization | `ported_view_3254_odoo_studio_equipment_request_form_custo` | form | inside `//sheet`: add field stage_id; replace `//field[@name='employee_id']`: add field create_uid; set studio_approval=False on `//button[@name='archive_equipment_request']`; before `//form[1]/sheet[1]/div[not(@name)][1]`: add div; set force_save=True, readonly=1 on `//field[@name='name']`; set readonly=(stage_id == 4) or ((stage_id == 3) or ((stage_id == 2) or (stage_id == 5))) on `//field[@name='equipment_id']`; set readonly=(stage_id == 4) or ((stage_id == 3) or ((stage_id == 2) or (stage_id == 5))) on `//field[@name='maintenance_type']`; set force_save=True, readonly=1 on `//field[@name='production_id']` … | Main request form customization: replaces Employee with Created by and makes Name and Manufacturing Order read-only. Locks equipment, type, team, responsible, dates, duration and priority by stage, and hides team, responsible, schedule and duration in stage 1. Priority becomes a required radio, and Description is swapped for Diagnosis Details. | `maintenance.request.stage_id` (maintenance)<br>`maintenance.request.x_studio_diagnosis_details`<br>`maintenance.request.x_studio_float_field_hmeW9`<br>`view maintenance.hr_equipment_request_view_form` (maintenance) |  |
+| Odoo Studio: equipment.request.form customization | `ported_view_3254_odoo_studio_equipment_request_form_custo` | form | inside `//sheet`: add field stage_id; replace `//field[@name='employee_id']`: add field create_uid; set studio_approval=False on `//button[@name='archive_equipment_request']`; before `//form[1]/sheet[1]/div[not(@name)][1]`: add div; set force_save=True, readonly=1 on `//field[@name='name']`; set readonly=(stage_id == 4) or ((stage_id == 3) or ((stage_id == 2) or (stage_id == 5))) on `//field[@name='equipment_id']`; set readonly=(stage_id == 4) or ((stage_id == 3) or ((stage_id == 2) or (stage_id == 5))) on `//field[@name='maintenance_type']`; set force_save=True, readonly=1 on `//field[@name='production_id']` … | Main request form customization: replaces Employee with Created by and makes Name and Manufacturing Order read-only. Locks equipment, type, team, responsible, dates, duration and priority by stage, and hides team, responsible, schedule and duration in stage 1. Priority becomes a required radio, and Description is swapped for Diagnosis Details. | `maintenance.request.stage_id` (maintenance)<br>`maintenance.request.diagnosis_details`<br>`maintenance.request.float_field_hmeW9`<br>`view maintenance.hr_equipment_request_view_form` (maintenance) |  |
 | Odoo Studio: equipment.request.tree customization | `view_5318_odoo_studio_equipment_request_tree_customization_e` | tree | after `//tree[1]/field[@name='name']`: add field description, field create_date; after `//field[@name='request_date']`: add field schedule_date, field close_date | Adds optional Description and Created on columns after the request name, and Scheduled Date and Close Date after Request Date, in the maintenance request list. | `maintenance.request.close_date` (maintenance)<br>`maintenance.request.description` (maintenance)<br>`maintenance.request.schedule_date` (maintenance)<br>`view maintenance.hr_equipment_request_view_tree` (maintenance) |  |
 | equipment.request.form_Button | `ported_view_5072_equipment_request_form_button` | form | after `//header/button[@name='archive_equipment_request']`: add ; set options={'clickable': False} on `//field[@name='stage_id']` | Stops users from changing stage by clicking the statusbar on the maintenance request form. The workflow buttons it originally added (Planning, In Progress, Create MR, Repaired) were stripped during porting. | `view maintenance.hr_equipment_request_view_form` (maintenance) |  |
 | equipment.request.form_Button | `view_5072_equipment_request_form_button_e` | form | after `//header/button[@name='archive_equipment_request']`: add ; set options={'clickable': False} on `//field[@name='stage_id']` | Stops users from changing stage by clicking the statusbar on the maintenance request form. Its workflow buttons were stripped as unresolvable. Duplicate of ported view 5072. | `view maintenance.hr_equipment_request_view_form` (maintenance) |  |
@@ -465,15 +465,15 @@ This repo only adds an optional ID column to the maintenance stage list, so user
 |---|---|---|---|---|---|---|
 | Odoo Studio: equipment.stage.tree customization | `ported_view_5071_odoo_studio_equipment_stage_tree_customi` | tree | after `//field[@name='done']`: add field id | Adds an optional ID column to the maintenance stage list, so users can see the stage IDs used by the workflow actions. | `view maintenance.hr_equipment_stage_view_tree` (maintenance) |  |
 
-### `x_journal_types` — Journal Types
+### `journal_types` — Journal Types
 
-*Created by this repo.* Python: `models/x_journal_types.py`. Record name field: `name`.
+*Created by this repo.* Python: `models/journal_types.py`. Record name field: `name`.
 
-Other repos that use this model: `access right BugFix-Accounting.access_5950_journal_types_group_system` (BugFix-Accounting)<br>`access right BugFix-Accounting.access_5951_journal_types_group_user` (BugFix-Accounting)<br>`access right BugFix-Stock.access_x_journal_types_user` (BugFix-Stock)<br>`automation BugFix-Accounting.base_automation_337_jin_company_id_in_journal_types` (BugFix-Accounting)<br>`record rule BugFix-Accounting.rule_629_jin_multi_company_journal_types` (BugFix-Accounting)<br>`server action BugFix-Accounting.sa_f5_x_journal_types_jin_company_id_in_journal_types` (BugFix-Accounting)<br>`server action BugFix-Accounting.server_action_2871_jin_company_id_in_journal_types` (BugFix-Accounting)<br>`server action BugFix-Stock.server_action_2448_movement_journals_update_offset_account` (BugFix-Stock)<details><summary>+3 more</summary>`stock.picking.x_studio_journal_type` (BugFix-Stock)<br>`window action BugFix-Accounting.action_2447_journal_types` (BugFix-Accounting)<br>`x_material_request.x_studio_journal_type` (BugFix-Stock)</details>
+Other repos that use this model: `access right BugFix-Accounting.access_5950_journal_types_group_system` (BugFix-Accounting)<br>`access right BugFix-Accounting.access_5951_journal_types_group_user` (BugFix-Accounting)<br>`access right BugFix-Stock.access_x_journal_types_user` (BugFix-Stock)<br>`automation BugFix-Accounting.base_automation_337_jin_company_id_in_journal_types` (BugFix-Accounting)<br>`record rule BugFix-Accounting.rule_629_jin_multi_company_journal_types` (BugFix-Accounting)<br>`server action BugFix-Accounting.sa_f5_x_journal_types_jin_company_id_in_journal_types` (BugFix-Accounting)<br>`server action BugFix-Accounting.server_action_2871_jin_company_id_in_journal_types` (BugFix-Accounting)<br>`server action BugFix-Stock.server_action_2448_movement_journals_update_offset_account` (BugFix-Stock)<details><summary>+3 more</summary>`stock.picking.journal_type` (BugFix-Stock)<br>`window action BugFix-Accounting.action_2447_journal_types` (BugFix-Accounting)<br>`material_request.journal_type` (BugFix-Stock)</details>
 
 **Summary:**
 
-<!-- SUMMARY:model:x_journal_types -->
+<!-- SUMMARY:model:journal_types -->
 A Journal Type is a company-specific lookup record with a name, description, offset accounting account, sequence and active flag. It is linked from equipment categories and maintenance requests, and copied onto Material Requests created from a maintenance request. The model is created in this repo, while its list and form views, defaults, access rights, multi-company record rule and the automation that fills the company live in BugFix-Accounting, and BugFix-Stock also grants access to it.
 <!-- /SUMMARY -->
 
@@ -491,7 +491,7 @@ A Journal Type is a company-specific lookup record with a name, description, off
 | `name` | Journal Type | char | Name of the Journal Type, entered by the user; used as the record's display name in lists, forms and search. | stored; required |  | `view BugFix-Accounting.ported_view_5320_default_list_view_fo_02152264_7fd7_4b5e_8a84_ca3714db9fad` (BugFix-Accounting)<br>`view BugFix-Accounting.ported_view_5321_default_form_view_fo_dbddc8a1_ea9d_47ba_8335_c08e4a53fc5c` (BugFix-Accounting)<br>`view BugFix-Accounting.ported_view_5322_default_search_view_d3c181ad_9bc3_4cfc_9d60_2500bd38fe9f` (BugFix-Accounting) |
 | `accounting_company_id` | Company | many2one → `res.company` | Company that owns the Journal Type; filled automatically by a server action after creation and used by a multi-company record rule to limit visibility. | stored | `model res.company` (base) | `record rule BugFix-Accounting.rule_629_jin_multi_company_journal_types` (BugFix-Accounting)<br>`server action BugFix-Accounting.sa_f5_x_journal_types_jin_company_id_in_journal_types` (BugFix-Accounting)<br>`server action BugFix-Accounting.server_action_2871_jin_company_id_in_journal_types` (BugFix-Accounting)<br>`view BugFix-Accounting.ported_view_5326_odoo_studio_default_7879380a_9ecc_4ca6_bfd3_fa82b991c3ce` (BugFix-Accounting) |
 | `description` | Description | char | Free-text description of the Journal Type, entered on its form. | stored |  | `view BugFix-Accounting.ported_view_5326_odoo_studio_default_7879380a_9ecc_4ca6_bfd3_fa82b991c3ce` (BugFix-Accounting) |
-| `x_studio_offset_account` | Offset Account | many2one → `account.account` | Accounting account used as the offset account for this Journal Type, chosen on its form. | stored | `model account.account` (account) | `view BugFix-Accounting.ported_view_5326_odoo_studio_default_7879380a_9ecc_4ca6_bfd3_fa82b991c3ce` (BugFix-Accounting) |
+| `offset_account` | Offset Account | many2one → `account.account` | Accounting account used as the offset account for this Journal Type, chosen on its form. | stored | `model account.account` (account) | `view BugFix-Accounting.ported_view_5326_odoo_studio_default_7879380a_9ecc_4ca6_bfd3_fa82b991c3ce` (BugFix-Accounting) |
 | `sequence` | Sequence | integer | Ordering number for Journal Types (drag handle in the list), with a default value. | stored |  | `default BugFix-Accounting.default_391_x_journal_types_sequence` (BugFix-Accounting)<br>`view BugFix-Accounting.ported_view_5320_default_list_view_fo_02152264_7fd7_4b5e_8a84_ca3714db9fad` (BugFix-Accounting) |
 
 ## Data records loaded (1)
@@ -500,7 +500,7 @@ Records this module creates on install (lookup values, sequences, defaults, comp
 
 | Type | Record name | Function | Depends on | Used by |
 |---|---|---|---|---|
-| `ir.default` | `default_387_maintenance_request_x_studio_integer_field_1Zbhs` | Sets the default of **New Integer (Maintenance Request)** to `"0"`. | `maintenance.request.x_studio_integer_field_1Zbhs` |  |
+| `ir.default` | `default_387_maintenance_request_integer_field_1Zbhs` | Sets the default of **New Integer (Maintenance Request)** to `"0"`. | `maintenance.request.integer_field_1Zbhs` |  |
 
 ## Depends on other modules' attributes
 
@@ -508,7 +508,7 @@ Everything of other modules that this repo's attributes rely on. If one of these
 
 | Module | Kind | Count | Attributes |
 |---|---|---|---|
-| `BugFix-Stock` | Jinasena repo | 1 | model x_material_request |
+| `BugFix-Stock` | Jinasena repo | 1 | model material_request |
 | `account` | Odoo | 1 | model account.account |
 | `base` | Odoo | 3 | model ir.sequence, model res.company, model res.users |
 | `maintenance` | Odoo | 21 | maintenance.request.close_date, maintenance.request.description, maintenance.request.duration, maintenance.request.maintenance_team_id, maintenance.request.maintenance_type, maintenance.request.name, maintenance.request.priority, maintenance.request.schedule_date, maintenance.request.stage_id, maintenance.request.user_id, model maintenance.equipment, model maintenance.equipment.category, model maintenance.mixin, model maintenance.request, model maintenance.stage, view maintenance.hr_equipment_category_view_form, view maintenance.hr_equipment_category_view_tree, view maintenance.hr_equipment_request_view_form, view maintenance.hr_equipment_request_view_tree, view maintenance.hr_equipment_stage_view_tree, view maintenance.hr_equipment_view_form |
@@ -521,4 +521,4 @@ This repo's attributes that other Jinasena repos rely on. Changing or removing o
 
 | Repo | Kind | Count | This repo's attributes they use |
 |---|---|---|---|
-| `BugFix-Accounting` | Jinasena repo | 7 | x_journal_types.create_date, x_journal_types.active, x_journal_types.name, x_journal_types.accounting_company_id, x_journal_types.description, x_journal_types.x_studio_offset_account, x_journal_types.sequence |
+| `BugFix-Accounting` | Jinasena repo | 7 | journal_types.create_date, journal_types.active, journal_types.name, journal_types.accounting_company_id, journal_types.description, journal_types.offset_account, journal_types.sequence |

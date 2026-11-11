@@ -10,9 +10,9 @@
       <field name="arch" type="xml">
         <data>
   <xpath expr="//field[@name='cost']" position="after">
-    <field name="x_studio_electricity"/>
-    <field name="x_studio_water"/>
-    <field name="x_studio_lubricant"/>
+    <field name="electricity"/>
+    <field name="water"/>
+    <field name="lubricant"/>
   </xpath>
 </data>
       </field>

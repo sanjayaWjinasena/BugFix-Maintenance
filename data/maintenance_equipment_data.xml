@@ -7,12 +7,12 @@
     <field name="code"><![CDATA[work_center = env['mrp.workcenter'].search([('equipment_ids', '=', record.id)])
 if work_center:
   for work_centers in work_center:
-    if work_centers.x_studio_ot_cost_per_hour > 0.00:
-      #work_centers.write({'costs_hour':(work_centers.x_studio_overhead_cost_hour + work_centers.x_studio_general_cost_hour + work_centers.x_studio_ot_cost_per_hour)})
-      work_centers.write({'costs_hour':(work_centers.x_studio_ot_cost_per_hour)}) 
+    if work_centers.ot_cost_per_hour > 0.00:
+      #work_centers.write({'costs_hour':(work_centers.overhead_cost_hour + work_centers.general_cost_hour + work_centers.ot_cost_per_hour)})
+      work_centers.write({'costs_hour':(work_centers.ot_cost_per_hour)}) 
     else:
-      #Ework_centers.write({'costs_hour':(work_centers.x_studio_labour_cost_hour + work_centers.x_studio_overhead_cost_hour + work_centers.x_studio_general_cost_hour)}) 
-      work_centers.write({'costs_hour':(work_centers.x_studio_labour_cost_hour)}) 
+      #Ework_centers.write({'costs_hour':(work_centers.labour_cost_hour + work_centers.overhead_cost_hour + work_centers.general_cost_hour)}) 
+      work_centers.write({'costs_hour':(work_centers.labour_cost_hour)}) 
       
      ]]></field>
     <field name="usage">base_automation</field>
@@ -25,12 +25,12 @@ if work_center:
     <field name="code"><![CDATA[work_center = env['mrp.workcenter'].search([('equipment_ids', '=', record.id)])
 if work_center:
   for work_centers in work_center:
-    if work_centers.x_studio_ot_cost_per_hour > 0.00:
-      #work_centers.write({'costs_hour':(work_centers.x_studio_overhead_cost_hour + work_centers.x_studio_general_cost_hour + work_centers.x_studio_ot_cost_per_hour)})
-      work_centers.write({'costs_hour':(work_centers.x_studio_ot_cost_per_hour)}) 
+    if work_centers.ot_cost_per_hour > 0.00:
+      #work_centers.write({'costs_hour':(work_centers.overhead_cost_hour + work_centers.general_cost_hour + work_centers.ot_cost_per_hour)})
+      work_centers.write({'costs_hour':(work_centers.ot_cost_per_hour)}) 
     else:
-      #Ework_centers.write({'costs_hour':(work_centers.x_studio_labour_cost_hour + work_centers.x_studio_overhead_cost_hour + work_centers.x_studio_general_cost_hour)}) 
-      work_centers.write({'costs_hour':(work_centers.x_studio_labour_cost_hour)}) 
+      #Ework_centers.write({'costs_hour':(work_centers.labour_cost_hour + work_centers.overhead_cost_hour + work_centers.general_cost_hour)}) 
+      work_centers.write({'costs_hour':(work_centers.labour_cost_hour)}) 
       
      ]]></field>
     <field name="usage">base_automation</field>
@@ -51,12 +51,12 @@ if work_center:
 work_center = env['mrp.workcenter'].search([('equipment_ids', '=', record.id)])
 if work_center:
   for work_centers in work_center:
-    if work_centers.x_studio_ot_cost_per_hour > 0.00:
-      #work_centers.write({'costs_hour':(work_centers.x_studio_overhead_cost_hour + work_centers.x_studio_general_cost_hour + work_centers.x_studio_ot_cost_per_hour)})
-      work_centers.write({'costs_hour':(work_centers.x_studio_ot_cost_per_hour)}) 
+    if work_centers.ot_cost_per_hour > 0.00:
+      #work_centers.write({'costs_hour':(work_centers.overhead_cost_hour + work_centers.general_cost_hour + work_centers.ot_cost_per_hour)})
+      work_centers.write({'costs_hour':(work_centers.ot_cost_per_hour)}) 
     else:
-      #Ework_centers.write({'costs_hour':(work_centers.x_studio_labour_cost_hour + work_centers.x_studio_overhead_cost_hour + work_centers.x_studio_general_cost_hour)}) 
-      work_centers.write({'costs_hour':(work_centers.x_studio_labour_cost_hour)}) 
+      #Ework_centers.write({'costs_hour':(work_centers.labour_cost_hour + work_centers.overhead_cost_hour + work_centers.general_cost_hour)}) 
+      work_centers.write({'costs_hour':(work_centers.labour_cost_hour)}) 
       
      
     ]]></field>

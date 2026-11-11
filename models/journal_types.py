@@ -1,10 +1,10 @@
-"""Sentinel declaration for x_journal_types so cross-references resolve."""
+"""Sentinel declaration for journal_types so cross-references resolve."""
 
 from odoo import fields, models
 
 
 class XJournalTypes(models.Model):
-    _name = "x_journal_types"
+    _name = "journal_types"
     _rec_name = "name"  # Clear-DB Studio model: records are named by name
     _description = "X Journal Types"
 
@@ -12,7 +12,7 @@ class XJournalTypes(models.Model):
     name = fields.Char(string="Journal Type")
     accounting_company_id = fields.Many2one("res.company", string="Company")
     description = fields.Char(string="Description")
-    x_studio_offset_account = fields.Many2one(
+    offset_account = fields.Many2one(
         "account.account", string="Offset Account"
     )
     sequence = fields.Integer(string="Sequence")
