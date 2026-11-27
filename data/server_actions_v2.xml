@@ -9,15 +9,21 @@
     <field name="name">MNT_REQ_inprogress</field>
     <field name="model_id" search="[('model', '=', 'maintenance.request')]"/>
     <field name="state">object_write</field>
+    <!-- Odoo 17 reads the target from update_path; without it the action fails with KeyError '' (Clear-DB: stage_id). -->
+    <field name="update_path">stage_id</field>
+    <field name="evaluation_type">value</field>
     <field name="usage">ir_actions_server</field>
     <field name="update_field_id" ref="maintenance.field_maintenance_request__stage_id"/>
-    <field name="value">2</field>
+    <field name="value" eval="str(ref('maintenance.stage_1'))"/>
   </record>
 
   <record id="server_action_1638_mnt_req_planing" model="ir.actions.server">
     <field name="name">MNT_REQ_planing</field>
     <field name="model_id" search="[('model', '=', 'maintenance.request')]"/>
     <field name="state">object_write</field>
+    <!-- Odoo 17 reads the target from update_path; without it the action fails with KeyError '' (Clear-DB: stage_id). -->
+    <field name="update_path">stage_id</field>
+    <field name="evaluation_type">value</field>
     <field name="usage">ir_actions_server</field>
     <field name="update_field_id" ref="maintenance.field_maintenance_request__stage_id"/>
     <field name="value">5</field>
@@ -27,36 +33,48 @@
     <field name="name">MNT_REQ_repaired</field>
     <field name="model_id" search="[('model', '=', 'maintenance.request')]"/>
     <field name="state">object_write</field>
+    <!-- Odoo 17 reads the target from update_path; without it the action fails with KeyError '' (Clear-DB: stage_id). -->
+    <field name="update_path">stage_id</field>
+    <field name="evaluation_type">value</field>
     <field name="usage">ir_actions_server</field>
     <field name="update_field_id" ref="maintenance.field_maintenance_request__stage_id"/>
-    <field name="value">3</field>
+    <field name="value" eval="str(ref('maintenance.stage_3'))"/>
   </record>
 
   <record id="server_action_1644_mnt_req_scraped" model="ir.actions.server">
     <field name="name">MNT_REQ_scraped</field>
     <field name="model_id" search="[('model', '=', 'maintenance.request')]"/>
     <field name="state">object_write</field>
+    <!-- Odoo 17 reads the target from update_path; without it the action fails with KeyError '' (Clear-DB: stage_id). -->
+    <field name="update_path">stage_id</field>
+    <field name="evaluation_type">value</field>
     <field name="usage">ir_actions_server</field>
     <field name="update_field_id" ref="maintenance.field_maintenance_request__stage_id"/>
-    <field name="value">4</field>
+    <field name="value" eval="str(ref('maintenance.stage_4'))"/>
   </record>
 
   <record id="server_action_2322_mr_maintenance_repaired" model="ir.actions.server">
     <field name="name">MR - Maintenance Repaired</field>
     <field name="model_id" search="[('model', '=', 'maintenance.request')]"/>
     <field name="state">object_write</field>
+    <!-- Odoo 17 reads the target from update_path; without it the action fails with KeyError '' (Clear-DB: stage_id). -->
+    <field name="update_path">stage_id</field>
+    <field name="evaluation_type">value</field>
     <field name="usage">ir_actions_server</field>
     <field name="update_field_id" ref="maintenance.field_maintenance_request__stage_id"/>
-    <field name="value">3</field>
+    <field name="value" eval="str(ref('maintenance.stage_3'))"/>
   </record>
 
   <record id="server_action_2324_mr_maintenance_scrap" model="ir.actions.server">
     <field name="name">MR - Maintenance Scrap</field>
     <field name="model_id" search="[('model', '=', 'maintenance.request')]"/>
     <field name="state">object_write</field>
+    <!-- Odoo 17 reads the target from update_path; without it the action fails with KeyError '' (Clear-DB: stage_id). -->
+    <field name="update_path">stage_id</field>
+    <field name="evaluation_type">value</field>
     <field name="usage">ir_actions_server</field>
     <field name="update_field_id" ref="maintenance.field_maintenance_request__stage_id"/>
-    <field name="value">4</field>
+    <field name="value" eval="str(ref('maintenance.stage_4'))"/>
   </record>
 
   <record id="server_action_2326_mr_create_mr_from_maintenance_request" model="ir.actions.server">

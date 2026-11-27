@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- BugFix-Maintenance: Phase E - 1 views for maintenance.equipment -->
+<odoo>
+  <data>
+    <record id="view_5495_odoo_studio_equipment_form_customization_e" model="ir.ui.view">
+      <field name="name">Odoo Studio: equipment.form customization</field>
+      <field name="model">maintenance.equipment</field>
+      <field name="type">form</field>
+      <field name="priority">160</field>
+      <field name="inherit_id" ref="maintenance.hr_equipment_view_form"/>
+      <field name="mode">extension</field>
+      <field name="arch" type="xml">
+        <data>
+  <xpath expr="//field[@name='cost']" position="after">
+    <field name="x_studio_electricity"/>
+    <field name="x_studio_water"/>
+    <field name="x_studio_lubricant"/>
+  </xpath>
+</data>
+      </field>
+    </record>
+
+  </data>
+</odoo>

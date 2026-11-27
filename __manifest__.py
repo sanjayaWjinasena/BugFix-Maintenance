@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 {
+    # upgrade-testing branch: data files below are commented out - this branch installs functions only, no data is seeded.
     'name': 'Jinasena : Module : Maintenance',
-    'version': '17.0.0.0.8',
+    'version': '17.0.0.0.19',
     'summary': 'Studio-to-Python port for BugFix-Maintenance',
     'author': 'Jinasena Agricultural Machinery (Pvt) Ltd.',
     'category': 'Human Resources/Maintenance',
@@ -51,6 +52,8 @@
     # icon at static/description/icon.png.
     'depends': ['base_setup', 'maintenance', 'base_automation', 'mrp_maintenance'],
     'data': [
+        'data/defaults_final.xml',
+        'data/server_actions_f5.xml',
         'data/server_actions.xml',
         'data/server_actions_v2.xml',
         'data/automations.xml',
@@ -61,6 +64,10 @@
         'views/maintenance_equipment_studio_ported.xml',
         'views/maintenance_stage_studio_ported.xml',
         'views/studio_ported_5_views.xml',
+        'data/server_actions_gap.xml',
+        'data/ir_defaults_gap.xml',  # upgrade-testing: form defaults shipped; record-specific ones commented inside
+        'views/maintenance_equipment_e_views.xml',
+        'views/maintenance_request_e_views.xml',
     ],
     'installable': True,
     'auto_install': False,
